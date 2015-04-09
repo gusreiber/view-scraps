@@ -1,0 +1,887 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler"
+  xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson"
+  xmlns:f="/lib/form" xmlns:i="jelly:fmt">
+
+  <j:set var="staticURL"
+    value="${request.contextPath}/plugin/view-examples" />
+
+  <l:layout norefresh="true">
+    <title>Analyzer</title>
+    <l:side-panel>
+      <!--  st:include page="action.jelly" / -->
+      
+      <!-- j:forEach var="w" items="${it.widgets}">
+        <st:include it="${w}" page="index.jelly" />
+      </j:forEach -->
+      
+      <l:buildQueue items="${app.queue.approximateItemsQuickly}"></l:buildQueue>
+    </l:side-panel>
+    <l:main-panel>
+      <link href='http://fonts.googleapis.com/css?family=Roboto:500,400italic,700italic,300,700,400' rel='stylesheet' type='text/css' />
+      <link href='http://fonts.googleapis.com/css?family=Arimo:400,700,400italic,700italic' rel='stylesheet' type='text/css' />
+      <link href='http://fonts.googleapis.com/css?family=Raleway:400,600,700,800,900' rel='stylesheet' type='text/css' />
+      <link type="text/css" rel="stylesheet" href="${staticURL}/css/lib.css" />
+      <link type="text/css" rel="stylesheet" href="${staticURL}/css/style.css" />
+      
+      <div class="bootstrap3">
+        
+       
+        <div class="page-box">
+          <h2>Create Item</h2>
+          <form class="create-item-list">
+            <fieldset class="panel panel-default">
+              <div class="panel-body">
+                <div class="input-group col-md-9 pull-left">                          
+                          <input placeholder="Filter item types..." type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" />
+                          <span class="input-group-addon icon-search"> </span>
+                          <span class="input-group-addon btn-default">Import item</span>
+                          <span class="input-group-addon btn-default">Add plugin</span>
+                        </div>
+              </div>
+            </fieldset>
+            <fieldset class="panel panel-default tile">
+              <div class="panel-body">
+                <span class="icn-box"><i class="icon-service"></i></span>
+                <strong class="title">Jobs and workflows</strong>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Freestyle 
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Maven 
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Workflow 
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Build Flow 
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Muli-configuration 
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+             <fieldset class="panel panel-default tile">
+              <div class="panel-body">
+                <span class="icn-box"><i class="icon-folder-open-o"></i></span>
+                <strong class="title">Organization and Visualization</strong>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Folder
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Folder template  
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Job monitor
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset class="panel panel-default tile">
+              <div class="panel-body">
+                <span class="icn-box"><i class="icon-insert-template"></i></span>
+                <strong class="title">Templates</strong>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Job
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Builder
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Folder    
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Publisher  
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Auxiliary
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset class="panel panel-default tile">
+              <div class="panel-body">
+                <span class="icn-box"><i class="icon-uniE602"></i></span>
+                <strong class="title">System and Operations</strong>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Update Center
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Master
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Slave Pool    
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Remote Shortcut  
+                  </label>
+                </div>
+               
+              </div>
+            </fieldset>
+            <fieldset class="panel panel-default tile">
+              <div class="panel-body">
+                <span class="icn-box"><i class="icon-docker"></i></span>
+                <strong class="title">Docker Containers</strong>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Jobs that build containers
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Container based test environments
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Container tracking    
+                  </label>
+                </div>
+                
+               
+              </div>
+            </fieldset>
+             <fieldset class="panel panel-default tile">
+              <div class="panel-body">
+                <strong class="title">Plugins</strong>
+                <span class="icn-box"><i class="icon-puzzle-piece"></i></span>
+                <p> </p>
+                <p>
+                <button class="btn btn-sm btn-default">Add plugin</button>
+                </p>
+              </div>
+            </fieldset>
+
+          </form>
+          <div class="clearfix"></div>
+        </div>
+
+        <div class="page-box">
+          <h2>Create Freestyle Build</h2>
+          <form>
+          <div class="panel-group" id="fsj-accordion" role="tablist"
+            aria-multiselectable="true">
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="fsj-headingOne">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#fsj-accordion"
+                    href="#fsj-basic" aria-expanded="true"
+                    aria-controls="fsj-basic"> Overview </a>
+                </h4>
+              </div>
+              <div id="fsj-basic" class="panel-collapse collapse in"
+                role="tabpanel" aria-labelledby="fsj-headingOne">
+                <fieldset class="panel-body">
+                <div class="form-group">
+                  <label>Project name</label>
+                   <input type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label>Description</label>
+                   <textarea class="form-control" ></textarea>
+                </div>
+                
+                </fieldset>
+              </div>
+            </div>
+            
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="fsj-headingAdvanced">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#fsj-accordion"
+                    href="#fsj-advanced" aria-expanded="true"
+                    aria-controls="fsj-advanced"> General Process Rules </a>
+                </h4>
+              </div>              
+              
+              <div id="fsj-advanced" class="panel-collapse collapse"
+                role="tabpanel" aria-labelledby="fsj-headingAdvanced">
+                <fieldset class="panel-body">
+                <div class="form-group">
+                <label>
+                   <input type="checkbox"/> Use display name
+                </label>
+                </div>
+               <div class="form-group">
+                <label>
+                   <input type="checkbox"/> Discard old builds
+                </label>
+                </div>
+                <div class="form-group">
+                <label>
+                   <input type="checkbox"/> Use custom workspace
+                </label>
+                </div>
+                <div class="form-group">
+                <label>
+                   <input type="checkbox"/>                
+                Set quiet period  </label>
+                </div>
+                <div class="form-group">
+                <label>
+                  <input type="checkbox"/>  
+Set retry count </label>
+                </div>
+                <div class="form-group">
+                <label>
+                  <input type="checkbox"/>  
+Block build when upstream project is building</label>
+                </div>
+<div class="form-group">
+                <label>
+                  <input type="checkbox"/>
+                Keep the build logs of dependencies</label>
+                </div>
+                </fieldset>
+              </div>
+            </div>
+            
+            
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="fsj-headingScm">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#fsj-accordion"
+                    href="#fsj-scm" aria-expanded="true"
+                    aria-controls="fsj-scm"> Source Code Management </a>
+                </h4>
+              </div>              
+              
+              <div id="fsj-scm" class="panel-collapse collapse"
+                role="tabpanel" aria-labelledby="fsj-headingScm">
+                <fieldset class="panel-body">
+                <div class="form-group">
+                <label>
+                   <input type="radio" name="scm" checked="checked "/> None
+                </label>
+                </div>
+                <div class="form-group">
+                <label>
+                   <input type="radio" name="scm" /> Multiple SVMs
+                </label>
+                </div>
+                <div class="form-group">
+                <label>
+                   <input type="radio" name="scm"/> CVS
+                </label>
+                </div>
+                <div class="form-group">
+                <label>
+                   <input type="radio" name="scm"/> CVS Projectset
+                </label>
+                </div>
+                <div class="form-group">
+                <label>
+                  <input type="radio" name="scm"/> Git </label>
+                </div>
+                <div class="form-group">
+                <label>
+                  <input type="radio" name="scm"/> Mecurial</label>
+                </div>
+                <div class="form-group">
+                <label>
+                  <input type="radio" name="scm"/> Perforce</label>
+                </div>
+                <div class="form-group">
+                <label>
+                   <input type="radio" name="scm"/> Subversion  </label>
+                </div>
+                </fieldset>
+              </div>
+            </div>
+            
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="fsj-headingTrigger">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#fsj-accordion"
+                    href="#fsj-trigger" aria-expanded="true"
+                    aria-controls="fsj-trigger"> Build Triggers </a>
+                </h4>
+              </div>              
+              
+              <div id="fsj-trigger" class="panel-collapse collapse"
+                role="tabpanel" aria-labelledby="fsj-headingTrigger">
+                <fieldset class="panel-body">
+                <div class="form-group">
+                <label>
+                  <input type="checkbox" name="trigger"/> Build when repository changes</label>
+                </div>                
+                <div class="form-group">
+                <label>
+                   <input type="checkbox" name="trigger" /> Build whenever a SNAPSHOT dependency is built 
+                </label>
+                </div>
+                <div class="form-group">
+                <label>
+                   <input type="checkbox" name="trigger" /> Trigger builds remotely (e.g., from scripts)
+                </label>
+                </div>
+                <div class="form-group">
+                <label>
+                   <input type="checkbox" name="trigger"/> Build after other projects are built 
+                </label>
+                </div>
+                <div class="form-group">
+                <label>
+                   <input type="checkbox" name="trigger"/> Build periodically 
+                </label>
+                </div>
+                <div class="form-group">
+                <label>
+                  <input type="checkbox" name="trigger"/> Build pull requests to the repository 
+                </label>
+                </div>
+                <div class="form-group">
+                <label>
+                  <input type="checkbox" name="trigger"/> Build when another project is promoted  </label>
+                </div>
+
+                </fieldset>
+              </div>
+            </div>
+
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="fsj-headingSteps">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#fsj-accordion"
+                    href="#fsj-steps" aria-expanded="true"
+                    aria-controls="fsj-steps"> Build Steps </a>
+                </h4>
+              </div>              
+              
+              <div id="fsj-steps" class="panel-collapse collapse"
+                role="tabpanel" aria-labelledby="fsj-headingSteps">
+                
+                <fieldset class="panel-body">
+                <div class="collapse divided-section" aria-expanded="false" id="collapseExample">
+ 
+                   <div class="panel-group" id="fsj-step-accordion" role="tablist"
+                              aria-multiselectable="true">
+                       <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="fsj-headingStep-1">
+                          <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="fsj-step-accordion"
+                              href="#fsj-step-1" aria-expanded="true"
+                              aria-controls="#fsj-step-1"> Step: Execute shell script </a>
+                          </h4>
+                        </div>              
+                        
+                        <div id="fsj-step-1" class="panel-collapse collapse"
+                          role="tabpanel" aria-labelledby="fsj-headingStep-1">
+                          <fieldset class="panel-body">
+                           <div class="form-group">
+          
+                            <pre class="editable">
+                            <textarea placeholder="Enter script here..."></textarea>
+                            </pre>
+                          </div> 
+                          <a href="#" class="btn btn-sm btn-primary" data-target="#add-steps, #add-step, #fsj-step-1" data-toggle="collapse">Continue</a>
+                          </fieldset>
+                        </div>
+                      </div>
+                   </div>
+                   <div class="divider"></div>               
+                
+                </div>
+                
+                <div id="add-step" class="collapse container-fluid" aria-expanded="false">
+                  <a href="#" class="btn btn-sm btn-default" data-target="#add-steps, #add-step, #fsj-step-1" data-toggle="collapse">Add step</a>
+                </div>
+                <div id="add-steps" class="collapse in container-fluid" aria-expanded="true">
+                  <div class="row">
+                    <div class="col-md-8">
+                    <div class="panel panel-default" style="margin-bottom:-2px;">
+                      <div class="panel-heading">
+                        <div class="input-group col-md-9 pull-left">                          
+                          <input placeholder="Filter steps operations..." type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" />
+                          <span class="input-group-addon icon-search"> </span>
+                          <span class="input-group-addon btn-default">Add plugin</span>
+                        </div>
+                        <div class="clearfix"></div>
+                      </div>
+                    </div>
+                    <div class="well well-sm" style="height:500px; overflow-y:auto;">
+                    
+                    <div class="build-steps" data-toggle="buttons">
+
+                      <button class="btn btn-default shell" data-toggle="collapse" data-target="#collapseExample, #fsj-step-1, #add-steps, #add-step" aria-expanded="false" aria-controls="collapseExample">
+                        <input type="radio" name="options" id="option2" autocomplete="off"  /> <span class="title">Execute shell script</span>
+                      </button>
+                      <label class="btn btn-default shell" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <input type="radio" name="options" id="option2" autocomplete="off"  /> <span class="title">Execute Windows batch command</span>
+                      </label>
+                      <label class="btn btn-default groovy" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <input type="radio" name="options" id="option2" autocomplete="off"  /> <span class="title">Exicute Groovy script</span>
+                      </label>
+                      <label class="btn btn-default deploy" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <input type="radio" name="options" id="option2" autocomplete="off"  /> <span class="title">Deploy application</span>
+                      </label>
+                      <label class="btn btn-default conditional" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <input type="radio" name="options" id="option1" autocomplete="off" /> <span class="title">Conditional step (single)</span>
+                      </label>
+                      <label class="btn btn-default conditionals" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <input type="radio" name="options" id="option1" autocomplete="off"  /> <span class="title">Conditional step (multiple)</span>
+                      </label>
+                      <label class="btn btn-default ant" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <input type="radio" name="options" id="option2" autocomplete="off" /> <span class="title">Invoke Ant</span>
+                      </label>
+                      <label class="btn btn-default gradle" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <input type="radio" name="options" id="option2" autocomplete="off"  /> <span class="title">Invoke Gradle</span>
+                      </label>
+                      <label class="btn btn-default maven" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <input type="radio" name="options" id="option2" autocomplete="off" /> <span class="title">Invoke Maven 3</span>
+                      </label>
+                      <label class="btn btn-default grails" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <input type="radio" name="options" id="option2" autocomplete="off" /> <span class="title">Build with Grails</span>
+                      </label>
+                      <label class="btn btn-default sbt" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <input type="radio" name="options" id="option2" autocomplete="off" /> <span class="title">Build with SBT</span>
+                      </label>
+                    </div>
+                    
+                    
+                    
+                    </div></div>
+                    <div class="col-md-4">
+                      <h3>&#8592; Add step</h3>
+                      <p>Add a new step to your build by choosing the operation type or plugin package you would like to use to perform that step. You will then be asked to configure the parameters for this step. Afterwards, you may add additional steps.</p>
+                    
+                    </div>
+                  </div>
+                </div>
+                
+
+
+                </fieldset>
+              </div>
+            </div>
+            
+            
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="fsj-headingPost">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#fsj-accordion"
+                    href="#fsj-post" aria-expanded="true"
+                    aria-controls="fsj-post"> Post-build actions </a>
+                </h4>
+              </div>              
+              
+              <div id="fsj-post" class="panel-collapse collapse"
+                role="tabpanel" aria-labelledby="fsj-headingPost">
+                <fieldset class="panel-body">
+                <div class="collapse divided-section" aria-expanded="false" id="actionCollapseExample">
+ 
+                   <div class="panel-group" id="fsj-action-accordion" role="tablist"
+                              aria-multiselectable="true">
+                       <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="fsj-headingAction-1">
+                          <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="fsj-action-accordion"
+                              href="#fsj-action-1" aria-expanded="true"
+                              aria-controls="fsj-action-1"> Step: Aggregate downsteam test results </a>
+                          </h4>
+                        </div>              
+                        
+                        <div id="fsj-action-1" class="panel-collapse collapse"
+                          role="tabpanel" aria-labelledby="fsj-headingAction-1">
+                          <fieldset class="panel-body">
+                           <div class="form-group">
+          
+                            <pre class="editable">
+                            <textarea placeholder="Enter script here..."></textarea>
+                            </pre>
+                          </div> 
+                          <a href="#" class="btn btn-sm btn-primary" data-target="#fsj-action-1, #add-actions, #add-action" data-toggle="collapse">Continue</a>
+                          </fieldset>
+                        </div>
+                      </div>
+                   </div>
+                   <div class="divider"></div>               
+                
+                </div>
+                
+                <div id="add-action" class="collapse container-fluid" aria-expanded="false">
+                  <a href="#" class="btn btn-sm btn-default" data-target="#fsj-action-1, #add-actions, #add-action" data-toggle="collapse">Add action</a>
+                </div>
+                <div id="add-actions" class="collapse in container-fluid" aria-expanded="true">
+                  <div class="row">
+                    <div class="col-md-8"><div class="well well-sm" style="height:500px; overflow-y:auto;">
+                    
+                    <div class="build-steps" data-toggle="buttons">
+
+                      <button class="btn btn-default results" data-toggle="collapse" data-target="#actionCollapseExample, #fsj-action-1, #add-actions, #add-action" aria-expanded="false" aria-controls="collapseExample">
+                        <input type="radio" name="options" id="option2" autocomplete="off"  /> <span class="title">Aggregate downsteam test results</span>
+                      </button>
+                      <label class="btn btn-default archive" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <input type="radio" name="options" id="option2" autocomplete="off"  /> <span class="title">Archive the artifacts</span>
+                      </label>
+                      <label class="btn btn-default build" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <input type="radio" name="options" id="option2" autocomplete="off"  /> <span class="title">Build other projects</span>
+                      </label>
+                      <label class="btn btn-default junit" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <input type="radio" name="options" id="option2" autocomplete="off"  /> <span class="title">Publish JUnit test results</span>
+                      </label>
+                      <label class="btn btn-default javadoc" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <input type="radio" name="options" id="option1" autocomplete="off" /> <span class="title">Publish Javadoc</span>
+                      </label>
+                      <label class="btn btn-default fingerprint" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <input type="radio" name="options" id="option1" autocomplete="off"  /> <span class="title">Record fingerprints</span>
+                      </label>
+                      <label class="btn btn-default email" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <input type="radio" name="options" id="option2" autocomplete="off" /> <span class="title">Email notifications</span>
+                      </label>
+                      
+                    </div>
+                    
+                    
+                    
+                    </div></div>
+                    <div class="col-md-4">
+                                    <h3>&#8592; Add action</h3>
+                <p>Add a new post-build action to your build by choosing the operation type or plugin package you would like to use to perform that step. You will then be asked to configure the parameters for this step. Afterwards, you may add additional steps.</p>
+                    
+                    </div>
+                  </div>
+                </div>
+                
+
+
+                </fieldset>
+              </div>
+            </div> 
+            
+            
+            
+            
+            
+            
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="fsj-headingNote">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#fsj-accordion"
+                    href="#fsj-note" aria-expanded="true"
+                    aria-controls="fsj-note"> Notifications </a>
+                </h4>
+              </div>              
+              
+              <div id="fsj-note" class="panel-collapse collapse"
+                role="tabpanel" aria-labelledby="fsj-headingNote">
+                <fieldset class="panel-body">
+                <div class="form-group">
+                <label>
+                   <input type="checkbox" name="trigger" /> None
+                </label>
+                </div>
+                <div class="form-group">
+                <label>
+                   <input type="checkbox" name="trigger" /> Multiple SVMs
+                </label>
+                </div>
+                <div class="form-group">
+                <label>
+                   <input type="checkbox" name="trigger"/> CVS
+                </label>
+                </div>
+                <div class="form-group">
+                <label>
+                   <input type="checkbox" name="trigger"/> CVS Projectset
+                </label>
+                </div>
+                <div class="form-group">
+                <label>
+                  <input type="checkbox" name="trigger"/> Git </label>
+                </div>
+                <div class="form-group">
+                <label>
+                  <input type="checkbox" name="trigger"/> Mecurial</label>
+                </div>
+                <div class="form-group">
+                <label>
+                  <input type="checkbox" name="trigger"/> Perforce</label>
+                </div>
+                <div class="form-group">
+                <label>
+                   <input type="checkbox" name="trigger"/> Subversion  </label>
+                </div>
+                </fieldset>
+              </div>
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            
+          </div>
+          
+          
+          
+          
+          
+          
+          
+          
+          </form>
+        </div>
+        <div class="page-box">
+          <h2>Create Build Item (for DCloud2)</h2>
+          <div class="panel-group" id="accordion" role="tablist"
+            aria-multiselectable="true">
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion"
+                    href="#collapseOne" aria-expanded="true"
+                    aria-controls="collapseOne"> Choose SCM
+                    Environement </a>
+                </h4>
+              </div>
+              <div id="collapseOne" class="panel-collapse collapse in"
+                role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                  <div class="max-read-width">
+                    <div class="btn-group scm" data-toggle="buttons">
+                      <label class="btn btn-default"> <input
+                        type="radio" name="options" id="option1"
+                        autocomplete="off" /><img
+                        src="${staticURL}/img/github_96.png" />
+                        <h4>GitHub</h4>
+                      </label> <label class="btn btn-default"> <input
+                        type="radio" name="options" id="option2"
+                        autocomplete="off" /><img
+                        src="${staticURL}/img/bitbucket_96.png" />
+                        <h4>Bitbucket</h4>
+                      </label> <label class="btn btn-default"> <input
+                        type="radio" name="options" id="option3"
+                        autocomplete="off" /><img
+                        src="${staticURL}/img/google_96.png" />
+                        <h4>Google Code</h4>
+                      </label>
+                    </div>
+                    <p>To connect a repository to a build job or
+                      workflow in Jenkins, you must first connect your
+                      CloudBees account to an SCM provider. We currently
+                      support GitHub, Bitbucket, and Google Code.</p>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingTwo">
+                <h4 class="panel-title">
+                  <a class="collapsed" data-toggle="collapse"
+                    data-parent="#accordion" href="#collapseTwo"
+                    aria-expanded="false" aria-controls="collapseTwo">
+                    Select Repository </a>
+                </h4>
+              </div>
+              <div id="collapseTwo" class="panel-collapse collapse"
+                role="tabpanel" aria-labelledby="headingTwo">
+                <div class="panel-body">
+                <div class="table-group">
+            <nav class="navbar navbar-default navbar-condensed nav-condensed attached">
+              <div class="container-fluid">
+                <form class="nav navbar-form navbar-left" role="search">
+                  <fieldset class="form-group">
+                    <div class="input-group input-group-sm">
+                      <input type="text" class="form-control"
+                        placeholder="Filter repositories..." /> <span
+                        class="input-group-btn">
+                        <button class="btn btn-default" type="button">Go!</button>
+                      </span>
+                    </div>
+                  </fieldset>
+                </form>
+              </div>
+            </nav>
+            <table class="table table-hover table-striped">
+             
+              <thead>
+                <tr>
+                  <th>Repository</th>
+                  <th>Updated</th>
+                </tr>
+              </thead>
+              <tbody >
+                <tr>
+                  <td><i class="icon-locked"> </i> cloudbees/work_prod_fixbattle</td>
+                  <td>2h 55 ago</td>
+                </tr>
+                 <tr>
+                  <td><i class="icon-repo-forked"> </i> cloudbees/work_prod_fixbattle</td>
+                  <td>2h 55 ago</td>
+                </tr>
+                <tr>
+                  <td><i class="icon-locked"> </i> cloudbees/work_prod_fixbattle</td>
+                  <td>2h 55 ago</td>
+                </tr>
+                 <tr>
+                  <td><i class="icon-locked"> </i> cloudbees/work_prod_fixbattle</td>
+                  <td>2h 55 ago</td>
+                </tr>
+                <tr>
+                  <td><i class="icon-locked"> </i> cloudbees/work_prod_fixbattle</td>
+                  <td>2h 55 ago</td>
+                </tr>
+                 <tr>
+                  <td><i class="icon-repo-forked"> </i> cloudbees/work_prod_fixbattle</td>
+                  <td>2h 55 ago</td>
+                </tr>
+                
+              </tbody>
+
+            </table>
+          </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingThree">
+                <h4 class="panel-title">
+                  <a class="collapsed" data-toggle="collapse"
+                    data-parent="#accordion" href="#collapseThree"
+                    aria-expanded="false" aria-controls="collapseThree">
+                    Configure Access </a>
+                </h4>
+              </div>
+              <div id="collapseThree" class="panel-collapse collapse"
+                role="tabpanel" aria-labelledby="headingThree">
+                <div class="panel-body">Anim pariatur cliche
+                  reprehenderit, enim eiusmod high life accusamus terry
+                  richardson ad squid. 3 wolf moon officia aute, non
+                  cupidatat skateboard dolor brunch. Food truck quinoa
+                  nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+                  sunt aliqua put a bird on it squid single-origin
+                  coffee nulla assumenda shoreditch et. Nihil anim
+                  keffiyeh helvetica, craft beer labore wes anderson
+                  cred nesciunt sapiente ea proident. Ad vegan excepteur
+                  butcher vice lomo. Leggings occaecat craft beer
+                  farm-to-table, raw denim aesthetic synth nesciunt you
+                  probably haven't heard of them accusamus labore
+                  sustainable VHS.</div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingFour">
+                <h4 class="panel-title">
+                  <a class="collapsed" data-toggle="collapse"
+                    data-parent="#accordion" href="#collapseFour"
+                    aria-expanded="false" aria-controls="collapseFour">
+                    Set Deployment Targets </a>
+                </h4>
+              </div>
+              <div id="collapseFour" class="panel-collapse collapse"
+                role="tabpanel" aria-labelledby="headingFour">
+                <div class="panel-body">
+                  <div class="max-read-width">
+                    <div class="btn-group scm" data-toggle="buttons">
+                      <label class="btn btn-default"> <input
+                        type="radio" name="options" id="1option1" autocomplete="off" /><img
+                        src="${staticURL}/img/saas_heroku.png" />
+                        <h4>Heroku</h4>
+                      </label> <label class="btn btn-default"> <input
+                        type="radio" name="options" id="1option2"
+                        autocomplete="off" /><img
+                        src="${staticURL}/img/saas_amazon.png" />
+                        <h4>EC2</h4>
+                      </label>
+                      <label class="btn btn-default"> 
+                        <input type="radio" name="options" id="1option3" autocomplete="off" />
+                        <span class="imgSz"><img src="${staticURL}/img/saas_dotcloud.png" /></span>
+                        <h4>DotCloud</h4>
+                      </label>
+                      <label class="btn btn-default"> 
+                        <input type="radio" name="options" id="1option3" autocomplete="off" />
+                        <span class="imgSz"><img src="${staticURL}/img/saas_gae.png" /></span>
+                        <h4>AppEngine</h4>
+                      </label>
+                      <label class="btn btn-default"> 
+                        <input type="radio" name="options" id="1option3" autocomplete="off" />
+                        <span class="imgSz"><img src="${staticURL}/img/saas_ssh.png" /></span>
+                        <h4>SSH</h4>
+                      </label>
+                    </div>
+                     <p>After selecting one of the above supported deployment targets, you will be asked to configure that environment to communicate with your Jenkins cloud service.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingFive">
+                <h4 class="panel-title">
+                  <a class="collapsed" data-toggle="collapse"
+                    data-parent="#accordion" href="#collapseFive"
+                    aria-expanded="false" aria-controls="collapseFive">
+                    Review Groovy Build/Deployment Script </a>
+                </h4>
+              </div>
+              <div id="collapseFive" class="panel-collapse collapse"
+                role="tabpanel" aria-labelledby="headingFive">
+                <div class="panel-body">
+                  <pre class="editable"><textarea></textarea></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <script src="${staticURL}/js/lib.js" />
+    </l:main-panel>
+  </l:layout>
+
+  <div id="hover-space" class="bootstrap3"></div>
+</j:jelly>

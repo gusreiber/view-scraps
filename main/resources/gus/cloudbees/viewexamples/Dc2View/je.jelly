@@ -1,0 +1,440 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler"
+  xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson"
+  xmlns:f="/lib/form" xmlns:i="jelly:fmt">
+
+  <j:set var="staticURL"
+    value="${request.contextPath}/plugin/view-examples" />
+
+  <l:layout norefresh="true">
+    <title>Analyzer</title>
+    <l:side-panel>
+      <!--  st:include page="action.jelly" / -->
+      
+      <!-- j:forEach var="w" items="${it.widgets}">
+        <st:include it="${w}" page="index.jelly" />
+      </j:forEach -->
+      
+      <l:buildQueue items="${app.queue.approximateItemsQuickly}"></l:buildQueue>
+    </l:side-panel>
+    <l:main-panel>
+      <link href='http://fonts.googleapis.com/css?family=Roboto:500,400italic,700italic,300,700,400' rel='stylesheet' type='text/css' />
+      <link href='http://fonts.googleapis.com/css?family=Arimo:400,700,400italic,700italic' rel='stylesheet' type='text/css' />
+      <link href='http://fonts.googleapis.com/css?family=Raleway:400,600,700,800,900' rel='stylesheet' type='text/css' />
+      <link type="text/css" rel="stylesheet" href="${staticURL}/css/lib.css" />
+      <link type="text/css" rel="stylesheet" href="${staticURL}/css/style.css" />
+      
+      <div class="bootstrap3">
+        
+        
+
+        
+        <div class="page-box" style=" min-height:500px; margin-bottom:1000px;">
+          <h2 style="display:inline-block; padding-top:100px; max-width:897px; position:relative;">Welcome to CloudBees Jenkins Enterprise <span class="sub" style="display:block; margin-top:5px; padding-top:5px; border-top:1px solid #ccc; font-size:60%; text-align:right">Part of the CloudBees Continuous Delivery platform</span>
+          <i class="icon-jenkins-head" style="font-size:200px; position:absolute; opacity:.1; right:-200px; bottom:-40px"></i>
+          </h2>
+        
+          <div class="collapse in" id="joinOrNot" style="max-width:897px;">
+            <h3 style="margin:40px 0 -40px">Stand-alone or join an operation cluster</h3>
+            <div id="account-setup-je" class="btn-group licChoice">
+              <a class="btn btn-default" id="newAccountJEBtn"><strong>Join an operation cluster</strong> Connect this Master to a JOC parent to enable centralized managment</a>
+              <a class="btn btn-default" id="existingAccountJEBtn"><strong>Use as stand-alone</strong> This Jenkins Master will act an independant unit for job monitoring</a>
+              <a class="btn btn-default" id="newLicenseJEBtn"><strong>Decide later</strong> You may begin evaluating CJE as a stand-alone master</a>
+            </div>
+            
+            <div  class="pull-right col-md-8">
+            <p style="font-size:120%; line-height:150%">The CloudBees Continuous Delivery platform is designed to sycronize build management accross an integrated ecosystem. 
+            To take full advantage of that functionality, this Jenkins Master should be merged into a larger operations center cluster, headed by a JOC installation. To do so, you will need to connect to that compute center. 
+            If you are not ready to take that integration step, you may begin your evaluation with this Jenkins unit as a stand-alone server.</p>
+            <button class="btn btn-default pull-right" data-toggle="collapse" data-target="#joinOrNot, #selectLevel" aria-expanded="false" aria-controls="joinOrNot, selectLevel">Skip this step</button>
+            </div>
+            <div style="display:none;">
+            <div id="newAccountJE">
+              <div class="row">
+              <div class="col col-md-6">
+                <div class="read-size">
+                <h3>Joining an operations center is easy</h3>
+                <p>Conections between Jenkins nodes is secured via shared keys between the JOC, master and slave units. You may either push the connection credentials from the JOC console, or paste that servers certificate into this input to establish the connection from this end.</p>
+                </div>
+              </div>              
+              <div class="col col-md-6">
+              <form>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Operations Center Commander URL</label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="URL to JOC server" />
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Connection certificate</label>
+                  <textarea  class="form-control" placeholder="Paste connection details here..." style="height:250px;"></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-default pull-right" style="margin-left:5px;">Details &#8594;</button>
+                <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                
+              </form>
+              </div>
+
+              </div>
+            </div>
+            
+            <div id="existingAccountJE">
+              <div class="row">
+              <div class="col col-md-1"></div>
+              <div class="col col-md-10">
+                <div class="read-size">
+                <h3>Going it alone has limitations</h3>
+                <p>Are you sure you are not interested in centralizing you management of build processes and the added performance and scalability of distributing workload accross several masters?</p>
+                <p>There is no additional cost for using JOC, but without it you will not be able to use an internal cloud model for optimizing your build process.</p>
+                </div>
+                 <div class="btn-group pull-right" data-toggle="buttons">
+  <label class="btn btn-default">
+    <input type="radio" name="options" id="option1z" autocomplete="off" /> Use Stand-alone...
+  </label>
+  <label class="btn btn-primary">
+    <input type="radio" name="options" id="option2z" autocomplete="off"/> Ask me again later...
+  </label>
+</div>
+<div class="clearfix" style="height:50px"></div>
+              </div>              
+              <div class="col col-md-1"></div>
+
+              </div>
+            </div>
+            
+            
+            <div id="newLicenseJE">
+              <div class="row">
+              <div class="col col-md-12">
+                <div class="read-size">
+                <h3>Not sure yet?</h3>
+                <p>You may start with stand-alone Jenkins and connect it to an operations center cluster in the future. If you have not yet downloaded JOC you can do so at this URL: <a href="#">www.cloudbees.com/download</a>.</p>
+                <button type="submit" class="btn btn-primary pull-right">Skip this for now...</button>
+                </div>
+              </div>              
+              
+
+              </div>
+            </div>
+            
+            
+            </div>
+            <div class="clearfix"></div>  
+          </div>
+          
+          
+          
+          
+            <div class="collapse" id="createAccount" style="max-width:897px;">
+            <h3 style="margin:40px 0 -40px">Create or join an account</h3>
+            <div id="account-setup" class="btn-group licChoice">
+              <a class="btn btn-default" id="newAccountBtn"><strong>Create new account</strong> Begin trial with new CloudBees account</a>
+              <a class="btn btn-default" id="existingAccountBtn"><strong>Use existing CloudBees account</strong> Use my existing CloudBees account for free trial</a>
+              <a class="btn btn-default" id="newLicenseBtn"><strong>Use license key</strong> Apply a valid Jenkins license key</a>
+              <a class="btn btn-default" id="noConnectionBtn"><strong>No connection</strong> This computer cannot connect to the internet</a>
+            </div>
+            
+            <div  class="pull-right col-md-8">
+            <p style="font-size:120%; line-height:150%">Before we start making better software, please take the time to help us do a little book keeping. 
+            To establish access to technical support and to validate your license we need you to establish an account with CloudBees. 
+            If you are impatient or are working from a computer without internet access, you may temporarily skip this step.</p>
+            <button class="btn btn-default pull-right" data-toggle="collapse" data-target="#selectLevel, #createAccount" aria-expanded="false" aria-controls="selectLevel, createAccount">Skip this step</button>
+            </div>
+            <div style="display:none;">
+            <div id="newAccount">
+              <div class="row">
+              <div class="col col-md-6">
+                <div class="read-size">
+                <h3>Getting started is fun</h3>
+                <p>Get stated with CloudBees by creating a new account that is fun and cool. You can do all sorts of great things. We know you can, because it is easy.</p>
+                <p>Try it now just for kicks and giggles.</p></div>
+              </div>              
+              <div class="col col-md-6">
+              <form>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Name</label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Your name" />
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" />
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Company</label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Your company name or organization" />
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" /> Receive product announcements
+                  </label>
+                </div>
+                 <div class="checkbox">
+                  <label>
+                    <input type="checkbox" /> Agree to <a href="#">terms of user license</a>
+                  </label>
+                </div>
+                <button type="submit" class="btn btn-primary pull-right">Submit</button>
+              </form>
+              </div>
+
+              </div>
+            </div>
+            
+            <div id="existingAccount">
+              <div class="row">
+              <div class="col col-md-6">
+                <div class="read-size">
+                <h3>Add this trial to an existing account</h3>
+                <p>Login to your existing account and start making the magic happen. We love magic, which is why we all went to Hogwarts and played Dungeons and Dragons in the mid eighties.</p>
+                <p><a href="#">Lost your password?</a> We can help.</p>
+                </div>
+              </div>              
+              <div class="col col-md-6">
+              <form>
+                <div class="form-group">
+                  <button class="btn btn-default" style="width:100%">Use Google</button>
+                </div>
+                <div class="form-group">
+                  <button class="btn btn-default" style="width:100%">Use GitHub</button>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Username</label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Your name" />
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Password</label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email" />
+                </div>
+                <button type="submit" class="btn btn-primary pull-right">Submit</button>
+              </form>
+              </div>
+
+              </div>
+            </div>
+            
+            <div id="newLicense">
+              <div class="row">
+              <div class="col col-md-6">
+                <div class="read-size">
+                <h3>Enter your license key</h3>
+                <p>You have already paid for our awesome product and we love you. Go ahead and prove your medal by entering your license key so we can move on to the good stuff.</p>
+                </div>
+              </div>              
+              <div class="col col-md-6">
+              <form>
+                <div class="form-group"> </div>
+                <div class="form-group"> </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Jenkins License Key</label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="16 digit key" />
+                </div>
+                <div class="form-group"> </div>
+                <div class="form-group"> </div>
+                <button type="submit" class="btn btn-primary pull-right">Submit</button>
+              </form>
+              </div>
+
+              </div>
+            </div>
+            
+            <div id="noConnection">
+              <div class="row">
+              <div class="col col-md-12">
+                <div class="read-size">
+                <h3>No tunnel out?</h3>
+                <p>We understand your build environment is important and you might need to keep it secured and well away from public access. 
+                If you are not able to connect to the greater internet from this computer you can skip this registration step and register from a computer that does have access to the web.
+                In the meantime, you will be without support access and some plugins may not function correctly.</p>
+                <button type="submit" class="btn btn-primary pull-right">Skip this for now...</button>
+                </div>
+              </div>              
+              
+
+              </div>
+            </div>
+            
+            
+            </div>
+            <div class="clearfix"></div>  
+          </div>
+          
+          
+          
+          <div id="selectLevel" class="collapse" style="max-width:897px;">
+            <h3 style="margin:40px 0 -40px">Select feature level</h3>
+            <div id="licLevel" style="white-space:nowrap">
+              <div class="btn-group licChoice" style="display:inline-block">
+              <a class="btn btn-default" id="teamEdBtn"><strong>Team Edition</strong> Ideal for small teams begining projects</a>
+              <a class="btn btn-default" id="enterprsiseEdBtn"><strong>Enterprise Edition</strong> The most comprehensive Jenkins offering designed to automate engineering at any scale</a>
+              <a class="btn btn-default" id="cloudEdBtn" style="background:#eee; opacity:.8"><strong>Cloud Edition</strong> Run Jenkins in internal and external cloud environments</a>        
+             </div>
+              <div class="btn-group licChoice" style="display:inline-block; margin-left:20px"> 
+              <a class="btn btn-default" id="newLicenseBtn"><strong>Use license key</strong> Apply a valid Jenkins license key</a>
+              
+              </div>
+            </div>
+            <div  class="pull-right col-md-8">
+            <p style="font-size:120%; line-height:150%">Choose the Jenkins edition that best fits the needs and size of your organization. 
+            Each package includes varrying levels of Enteprise Support to ensure your success with countinuous delivery.</p>
+             <button class="btn btn-default pull-right">Select Plugins</button> 
+             <button class="btn btn-default pull-right" data-toggle="collapse" data-target="#selectLevel, #createAccount" aria-expanded="false" aria-controls="selectLevel, createAccount" style="margin-right:5px;">Back</button>
+            </div>
+            <div style="display:none;">
+            <div id="teamEd">
+              <div class="row"> 
+               <div class="col col-md-6">
+                <div class="read-size">
+                <h3>Try Team Edition</h3>
+                <p>Everything you need to get started with Jenkins. Team Edition includes all the most popular premium plugins from CloudBees and a starter support package to ensure your success.</p></div>
+                <button class="btn btn-primary">Select this Edition</button>
+              </div>             
+              <div class="col col-md-6">
+              <ul>
+                <li>Starter
+                  <ul>
+                    <li>Support</li>
+                    <li>Folders</li>
+                    <li>Folders+</li>
+                    <li>WF OSS</li>
+                    <li>Backup</li>
+                  </ul>
+                </li>
+                <li>Security
+                  <ul>
+                    <li>RBAC</li>
+                    <li>Wikitext</li>
+                    <li>SecureCopy</li>
+                  </ul>
+                </li>
+                <li>CB J Analytics
+                  <ul>
+                    <li>Dashboards</li>
+                    <li>Alerting</li>
+                  </ul>
+                </li>
+              </ul>
+              </div>
+              </div>
+            </div>
+            
+            <div id="enterprsiseEd">
+              <div class="row">
+              <div class="col col-md-6">
+                <div class="read-size">
+                <h3>Go Enteprise!</h3>
+                <p>Jenkins Enterprise is completely awesomely good. Use it and see how great life can be with every checkin. Build things you never thought possible.</p>
+                <p>Login to your existing account and start making the magic happen. We love magic, which is why we all went to Hogwarts and played Dungeons and Dragons in the mid eighties.</p>
+                <button class="btn btn-primary">Select this Edition</button>
+                </div>
+              </div>   
+              <div class="col col-md-6">
+              <ul>
+                <li>High Availability
+                  <ul>
+                    <li>High Availability</li>
+                    <li>LR Builds</li>
+                    <li>Restart Aborted Builds</li>
+                  </ul>
+                </li>
+                <li>Optimized Utilization
+                  <ul>
+                    <li>Even Scheduler</li>
+                    <li>Fast Archiver</li>
+                    <li>NIO SSH</li>
+                    <li>Label Throttle</li>
+                    <li>vSphere</li>
+                  </ul>
+                </li>
+                <li>Management
+                  <ul>
+                    <li>Cluster Ops</li>
+                    <li>Custom Update Center</li>
+                    <li>Templates</li>
+                    <li>Plugin Usage</li>
+                    <li>Nodes Plus</li>
+                    <li>Consolidated Build View</li>
+                  </ul>
+                </li>
+                <li>Developer Productivity
+                  <ul>
+                    <li>Validated Merge</li>
+                    <li>GitHub PR</li>
+                  </ul>
+                </li>
+                <li>Continuous Delivery
+                  <ul>
+                    <li>WF Stage View</li>
+                    <li>Checkpoint</li>
+                  </ul>
+                </li>
+                <li>Ops
+                  <ul><li>Release Centric View </li></ul>
+                </li>
+              </ul>
+              </div>
+            </div>
+            </div>
+            
+            <div id="cloudEd">
+              <div class="row">
+              <div class="col col-md-6">
+                <div class="read-size">
+                <h3>Capture the Clouds</h3>
+                <p>Whether you are using remote resources or leveraging your own infrastructure, the convenience of cloud like virtualization is transforming computing.
+                CloudBees Jenkins Cloud Eidition is tailored made for these new environments.</p>
+                <button class="btn btn-primary">Select this Edition</button>
+                </div>
+              </div>              
+              <div class="col col-md-6">
+              <ul>
+                <li>Pivotal<ul>
+                <li>Deployer</li>
+<li>Pivotal Auth (name TBD)</li></ul></li>
+<li>Amazon Web Services<ul><li>
+EC2 Cli (deployer - name TBD)</li>
+<li>EC2 cloud slaves</li></ul></li>
+                
+              </ul>
+              </div>
+
+              </div>
+            </div>
+            
+            <div id="noConnection">
+              <div class="row">
+              <div class="col col-md-12">
+                <div class="read-size">
+                <h3>No tunnel out?</h3>
+                <p>We understand your build environment is important and you might need to keep it secured and well away from public access. 
+                If you are not able to connect to the greater internet from this computer you can skip this registration step and register from a computer that does have access to the web.
+                In the meantime, you will be without support access and some plugins may not function correctly.</p>
+                <button type="submit" class="btn btn-primary pull-right">Skip this for now...</button>
+                </div>
+              </div>              
+              
+
+              </div>
+            </div>
+            
+            
+            </div>
+          </div>
+       </div>
+        
+
+
+        
+        
+       
+        
+            
+            
+            
+            
+
+        
+      </div>
+      <script src="${staticURL}/js/lib.js" />
+    </l:main-panel>
+  </l:layout>
+
+  <div id="hover-space" class="bootstrap3"></div>
+</j:jelly>

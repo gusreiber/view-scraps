@@ -1,0 +1,2002 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler"
+  xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson"
+  xmlns:f="/lib/form" xmlns:i="jelly:fmt">
+
+  <j:set var="staticURL"
+    value="${request.contextPath}/plugin/view-examples" />
+
+  <l:layout norefresh="true">
+    <title>Analyzer</title>
+    <l:side-panel>
+      <!--  st:include page="action.jelly" / -->
+      
+      <!-- j:forEach var="w" items="${it.widgets}">
+        <st:include it="${w}" page="index.jelly" />
+      </j:forEach -->
+      
+      <l:buildQueue items="${app.queue.approximateItemsQuickly}"></l:buildQueue>
+    </l:side-panel>
+    <l:main-panel>
+      <link href='http://fonts.googleapis.com/css?family=Roboto:500,400italic,700italic,300,700,400' rel='stylesheet' type='text/css' />
+      <link href='http://fonts.googleapis.com/css?family=Arimo:400,700,400italic,700italic' rel='stylesheet' type='text/css' />
+      <link href='http://fonts.googleapis.com/css?family=Raleway:400,600,700,800,900' rel='stylesheet' type='text/css' />
+      <link type="text/css" rel="stylesheet" href="${staticURL}/css/lib.css" />
+      <link type="text/css" rel="stylesheet" href="${staticURL}/css/style.css" />
+      
+      <div class="bootstrap3">
+        
+        <div class="page-box plugin-update" style="margin-bottom:350px; display:none;">
+        <div class="well well-sm">
+        <form class="create-item-list">
+          <h4>Featured Plugin Packages from CloudBees</h4>
+          <fieldset class="panel panel-default tile">
+            <a href="#" class="panel-body btn">
+              <span class="icn-box"><i class="icon-locked"></i></span>
+              <strong class="title">Security and system monitoring</strong>
+              <p>Test about what is included in this pack that makes it cool.</p>
+            </a>
+          </fieldset>
+          <fieldset class="panel panel-default tile">
+            <a href="#" class="panel-body btn">
+              <span style="font-size:120px; bottom:-20px; right:5px;" class="icn-box"><i class="icon-docker"></i></span>
+              <strong class="title">Docker style containers</strong>
+              <p>Test about what is included in this pack that makes it cool.</p>
+            </a>
+          </fieldset>
+          
+          <fieldset class="panel panel-default tile">
+            <a href="#" class="panel-body btn">
+              <span class="icn-box"><i class="icon-uniE602"></i></span>
+              <strong class="title">Enterprise Solutions</strong>
+              <p>Test about what is included in this pack that makes it cool.</p>
+            </a>
+          </fieldset>
+          
+          <fieldset class="panel panel-default tile">
+            <a href="#" class="panel-body btn">
+              <span class="icn-box"><i class="icon-stats"></i></span>
+              <strong class="title">Analytics and visualization</strong>
+              <p>Test about what is included in this pack that makes it cool.</p>
+            </a>
+          </fieldset>
+        
+        </form>
+        
+        <button class="btn btn-default pull-right">Get more...</button>
+        <div class="clearfix"></div>
+        </div>  
+        
+        <form method="post" action="install">
+  <div id="filter-container">
+    Filter: <input id="filter-box" type="text" />
+  </div>
+  <div class="tabBarFrame ">
+    <div class="tabBar">
+      <div class="tab active">
+        <input name="tab-group-1428434055171" checked="checked"
+          id="tab-1428434055171-" type="radio" /><a href="." class="">Updates</a>
+      </div>
+      <div class="tab">
+        <input name="tab-group-1428434055171" id="tab-1428434055171-1"
+          type="radio" /><a href="./available" class="">Available</a>
+      </div>
+      <div class="tab">
+        <input name="tab-group-1428434055171" id="tab-1428434055171-2"
+          type="radio" /><a href="./installed" class="">Installed</a>
+      </div>
+      <div class="tab">
+        <input name="tab-group-1428434055171" id="tab-1428434055171-3"
+          type="radio" /><a href="./advanced" class="">Advanced</a>
+      </div>
+    </div>
+    <div class="tabBarBaseline"></div>
+  </div>
+  <div class="pane-frame">
+    <table id="plugins" class="sortable pane bigtable stripped-odd table-striped table">
+      <colgroup>
+        <col></col>
+        <col></col>
+        <col></col>
+        <col></col>
+        <col></col>
+      </colgroup>
+      <thead>
+        <tr>
+          <th title="Check to install the plugin"
+            onclick="showhideCategories(this,1)"
+            tooltip="Check to install the plugin" width="32">
+            
+            
+            
+            </th>
+          <th initialsortdir="down" onclick="showhideCategories(this,0)"><a
+            href="#" class="sortheader">Plugin Name<span class="sortarrow"></span></a></th>
+            
+          <th onclick="showhideCategories(this,0)"><a href="#"
+            class="sortheader">Latest<span class="sortarrow"></span></a></th>
+          <th><a href="#" class="sortheader">Current<span
+              class="sortarrow"></span></a></th>
+          <th><a class="sortheader" hef="">Pack</a></th>
+        </tr>
+      </thead>
+      <tbody class="group">
+      <tr class="group-row">
+        <td class="chk"><input type="checkbox" /></td>
+        <td colspan="4"><a href="#">Analytics and visualization plugin pack</a></td>
+      </tr>
+      <tr class="group-row">
+        <td class="chk"><input type="checkbox" /></td>
+        <td colspan="4"><a href="#">Unpacked plugins</a></td>
+      </tr>
+      <tr name="Credentials Plugin" class=" plugin">
+          <td data="_" class="pane" align="center"><input
+            onclick="flip(this);" name="plugin.credentials.default"
+            type="checkbox" /></td>
+          <td data="Credentials Plugin" class="pane"><div>
+              <a
+                href="https://wiki.jenkins-ci.org/display/JENKINS/Credentials+Plugin">Credentials
+                Plugin</a>
+            </div>
+            </td>
+          <td class="pane">1.22</td>
+          <td class="pane">1.18</td>
+          <td class="pane pack">NA</td>
+        </tr>
+        <tr name="Credentials Plugin" class=" plugin">
+          <td data="_" class="pane" align="center"></td>
+          <td colspan="4" data="Credentials Plugin" class="pane">
+            <div class="excerpt">This plugin allows you to store
+              credentials in Jenkins.</div></td>
+         
+        </tr>
+<tr name="CVS Plugin" class=" plugin">
+          <td data="_" class="pane" align="center"><input
+            onclick="flip(this);" name="plugin.cvs.default"
+            type="checkbox" /></td>
+          <td data="CVS Plugin" class="pane"><div>
+              <a
+                href="https://wiki.jenkins-ci.org/display/JENKINS/CVS+Plugin">CVS
+                Plugin</a>
+            </div>
+          </td>
+          <td class="pane">2.12</td>
+          <td class="pane">2.11</td><td class="pane pack">NA</td>
+        </tr>
+<tr name="CVS Plugin" class=" plugin">
+          <td data="_" class="pane" align="center"></td>
+          <td colspan="4" data="CVS Plugin" class="pane">
+            <div class="excerpt">This bundled plugin integrates
+              Jenkins with CVS version control system.</div></td>
+        </tr> 
+        <tr name="Javadoc Plugin" class=" plugin">
+          <td data="_" class="pane" align="center"><input
+            onclick="flip(this);" name="plugin.javadoc.default"
+            type="checkbox" /></td>
+          <td data="Javadoc Plugin" class="pane"><div>
+              <a
+                href="https://wiki.jenkins-ci.org/display/JENKINS/Javadoc+Plugin">Javadoc
+                Plugin</a>
+            </div>
+           </td>
+          <td class="pane">1.3</td>
+          <td class="pane">1.0</td><td class="pane pack">NA</td>
+        </tr>
+        <tr name="Javadoc Plugin" class=" plugin">
+          <td data="_" class="pane" align="center"></td>
+          <td colspan="4" data="Javadoc Plugin" class="pane">
+            <div class="excerpt">This plugin adds Javadoc support
+              to Jenkins.</div></td>
+        </tr>
+        <tr name="JUnit Plugin" class=" plugin">
+          <td data="_" class="pane" align="center"><input
+            onclick="flip(this);" name="plugin.junit.default"
+            type="checkbox" /></td>
+          <td data="JUnit Plugin" class="pane"><div>
+              <a
+                href="https://wiki.jenkins-ci.org/display/JENKINS/JUnit+Plugin">JUnit
+                Plugin</a>
+            </div>
+            </td>
+          <td class="pane">1.5</td>
+          <td class="pane">1.0</td><td class="pane pack">NA</td>
+        </tr>
+        <tr name="JUnit Plugin" class=" plugin">
+          <td data="_" class="pane" align="center"></td>
+          <td colspan="4" data="JUnit Plugin" class="pane">
+            <div class="excerpt">Allows JUnit-format test results
+              to be published.</div></td>
+        </tr>
+<tr name="LDAP Plugin" class=" plugin">
+          <td data="_" class="pane" align="center"><input
+            onclick="flip(this);" name="plugin.ldap.default"
+            type="checkbox" /></td>
+          <td data="LDAP Plugin" class="pane"><div>
+              <a
+                href="https://wiki.jenkins-ci.org/display/JENKINS/LDAP+Plugin">LDAP
+                Plugin</a>
+            </div>
+            </td>
+          <td class="pane">1.11</td>
+          <td class="pane">1.6</td><td class="pane pack">NA</td>
+        </tr>
+        <tr name="LDAP Plugin" class=" plugin">
+          <td data="_" class="pane" align="center"></td>
+          <td colspan="4" data="LDAP Plugin" class="pane">
+            <div class="excerpt">Security realm based on LDAP
+              authentication.</div>
+            <div class="compatWarning">Warning: the new version of
+              this plugin claims to use a different settings format than
+              the installed version. Jobs using this plugin may need to
+              be reconfigured, and/or you may not be able to cleanly
+              revert to the prior version without manually restoring old
+              settings. Consult the plugin release notes for details.</div></td>
+        </tr>                                       
+        <!-- tr name="Credentials Plugin" class=" plugin">
+          <td data="_" class="pane" align="center"><input
+            onclick="flip(this);" name="plugin.credentials.default"
+            type="checkbox" /></td>
+          <td data="Credentials Plugin" class="pane"><div>
+              <a
+                href="https://wiki.jenkins-ci.org/display/JENKINS/Credentials+Plugin">Credentials
+                Plugin</a>
+            </div>
+            <div class="excerpt">This plugin allows you to store
+              credentials in Jenkins.</div></td>
+          <td class="pane">1.22</td>
+          <td class="pane">1.18</td><td class="pane pack">NA</td>
+        </tr >
+        <tr name="CVS Plugin" class=" plugin">
+          <td data="_" class="pane" align="center"><input
+            onclick="flip(this);" name="plugin.cvs.default"
+            type="checkbox" /></td>
+          <td data="CVS Plugin" class="pane"><div>
+              <a
+                href="https://wiki.jenkins-ci.org/display/JENKINS/CVS+Plugin">CVS
+                Plugin</a>
+            </div>
+            <div class="excerpt">This bundled plugin integrates
+              Jenkins with CVS version control system.</div></td>
+          <td class="pane">2.12</td>
+          <td class="pane">2.11</td><td class="pane pack">NA</td>
+        </tr>
+        <tr name="Javadoc Plugin" class=" plugin">
+          <td data="_" class="pane" align="center"><input
+            onclick="flip(this);" name="plugin.javadoc.default"
+            type="checkbox" /></td>
+          <td data="Javadoc Plugin" class="pane"><div>
+              <a
+                href="https://wiki.jenkins-ci.org/display/JENKINS/Javadoc+Plugin">Javadoc
+                Plugin</a>
+            </div>
+            <div class="excerpt">This plugin adds Javadoc support
+              to Jenkins.</div></td>
+          <td class="pane">1.3</td>
+          <td class="pane">1.0</td><td class="pane pack">NA</td>
+        </tr>
+        <tr name="JUnit Plugin" class=" plugin">
+          <td data="_" class="pane" align="center"><input
+            onclick="flip(this);" name="plugin.junit.default"
+            type="checkbox" /></td>
+          <td data="JUnit Plugin" class="pane"><div>
+              <a
+                href="https://wiki.jenkins-ci.org/display/JENKINS/JUnit+Plugin">JUnit
+                Plugin</a>
+            </div>
+            <div class="excerpt">Allows JUnit-format test results
+              to be published.</div></td>
+          <td class="pane">1.5</td>
+          <td class="pane">1.0</td><td class="pane pack">NA</td>
+        </tr>
+        <tr name="LDAP Plugin" class=" plugin">
+          <td data="_" class="pane" align="center"><input
+            onclick="flip(this);" name="plugin.ldap.default"
+            type="checkbox" /></td>
+          <td data="LDAP Plugin" class="pane"><div>
+              <a
+                href="https://wiki.jenkins-ci.org/display/JENKINS/LDAP+Plugin">LDAP
+                Plugin</a>
+            </div>
+            <div class="excerpt">Security realm based on LDAP
+              authentication.</div>
+            <div class="compatWarning">Warning: the new version of
+              this plugin claims to use a different settings format than
+              the installed version. Jobs using this plugin may need to
+              be reconfigured, and/or you may not be able to cleanly
+              revert to the prior version without manually restoring old
+              settings. Consult the plugin release notes for details.</div></td>
+          <td class="pane">1.11</td>
+          <td class="pane">1.6</td><td class="pane pack">NA</td>
+        </tr-->
+        <tr name="Mailer" class=" plugin">
+          <td data="_" class="pane" align="center"><input
+            onclick="flip(this);" name="plugin.mailer.default"
+            type="checkbox" /></td>
+          <td data="Mailer" class="pane"><div>
+              <a
+                href="https://wiki.jenkins-ci.org/display/JENKINS/Mailer">Mailer</a>
+            </div>
+            <div class="excerpt">This plugin allows you to
+              configure email notifications. This is a break-out of the
+              original core based email component.</div></td>
+          <td class="pane">1.15</td>
+          <td class="pane">1.10</td><td class="pane pack">NA</td>
+        </tr>
+        <tr name="Matrix Authorization Strategy Plugin" class=" plugin">
+          <td data="_" class="pane" align="center"><input
+            onclick="flip(this);" name="plugin.matrix-auth.default"
+            type="checkbox" /></td>
+          <td data="Matrix Authorization Strategy Plugin" class="pane"><div>
+              <a
+                href="https://wiki.jenkins-ci.org/display/JENKINS/Matrix+Authorization+Strategy+Plugin">Matrix
+                Authorization Strategy Plugin</a>
+            </div>
+            <div class="excerpt">Offers matrix-based security
+              authorization strategies (global and per-project).</div></td>
+          <td class="pane">1.2</td>
+          <td class="pane">1.0.2</td><td class="pane pack">NA</td>
+        </tr>
+        <tr name="Matrix Project Plugin" class=" plugin">
+          <td data="_" class="pane" align="center"><input
+            onclick="flip(this);" name="plugin.matrix-project.default"
+            type="checkbox" /></td>
+          <td data="Matrix Project Plugin" class="pane"><div>
+              <a
+                href="https://wiki.jenkins-ci.org/display/JENKINS/Matrix+Project+Plugin">Matrix
+                Project Plugin</a>
+            </div>
+            <div class="excerpt">Multi-configuration (matrix)
+              project type.</div></td>
+          <td class="pane">1.4</td>
+          <td class="pane">1.0-beta-1</td><td class="pane pack">NA</td>
+        </tr>
+        <tr name="Maven Project Plugin" class=" plugin">
+          <td data="_" class="pane" align="center"><input
+            onclick="flip(this);" name="plugin.maven-plugin.default"
+            type="checkbox" /></td>
+          <td data="Maven Project Plugin" class="pane"><div>
+              <a
+                href="https://wiki.jenkins-ci.org/display/JENKINS/Maven+Project+Plugin">Maven
+                Project Plugin</a>
+            </div>
+            <div class="excerpt">Jenkins plugin for building Maven
+              2/3 jobs via a special project type.</div></td>
+          <td class="pane">2.9</td>
+          <td class="pane">2.5</td><td class="pane pack">NA</td>
+        </tr>
+        <tr name="Monitoring external jobs" class=" plugin">
+          <td data="_" class="pane" align="center"><input
+            onclick="flip(this);"
+            name="plugin.external-monitor-job.default" type="checkbox" /></td>
+          <td data="Monitoring external jobs" class="pane"><div>
+              <a
+                href="https://wiki.jenkins-ci.org/display/JENKINS/Monitoring+external+jobs">Monitoring
+                external jobs</a>
+            </div>
+            <div class="excerpt">Adds the ability to monitor the
+              result of externally executed jobs.</div></td>
+          <td class="pane">1.4</td>
+          <td class="pane">1.2</td><td class="pane pack">NA</td>
+        </tr>
+        <tr name="OWASP Markup Formatter Plugin" class=" plugin">
+          <td data="_" class="pane" align="center"><input
+            onclick="flip(this);"
+            name="plugin.antisamy-markup-formatter.default"
+            type="checkbox" /></td>
+          <td data="OWASP Markup Formatter Plugin" class="pane"><div>
+              <a
+                href="https://wiki.jenkins-ci.org/display/JENKINS/OWASP+Markup+Formatter+Plugin">OWASP
+                Markup Formatter Plugin</a>
+            </div>
+            <div class="excerpt">Uses policy definitions to allow
+              limited HTML markup in user-submitted text.</div></td>
+          <td class="pane">1.3</td>
+          <td class="pane">1.0</td><td class="pane pack">NA</td>
+        </tr>
+        <tr name="PAM Authentication Plugin" class=" plugin">
+          <td data="_" class="pane" align="center"><input
+            onclick="flip(this);" name="plugin.pam-auth.default"
+            type="checkbox" /></td>
+          <td data="PAM Authentication Plugin" class="pane"><div>
+              <a
+                href="https://wiki.jenkins-ci.org/display/JENKINS/PAM+Authentication+Plugin">PAM
+                Authentication Plugin</a>
+            </div>
+            <div class="excerpt">Adds Unix Pluggable
+              Authentication Module (PAM) support to Jenkins.</div></td>
+          <td class="pane">1.2</td>
+          <td class="pane">1.1</td><td class="pane pack">NA</td>
+        </tr>
+        <tr name="SSH Credentials Plugin" class=" plugin">
+          <td data="_" class="pane" align="center"><input
+            onclick="flip(this);" name="plugin.ssh-credentials.default"
+            type="checkbox" /></td>
+          <td data="SSH Credentials Plugin" class="pane"><div>
+              <a
+                href="https://wiki.jenkins-ci.org/display/JENKINS/SSH+Credentials+Plugin">SSH
+                Credentials Plugin</a>
+            </div>
+            <div class="excerpt">This plugin allows you to store
+              SSH credentials in Jenkins.</div></td>
+          <td class="pane">1.11</td>
+          <td class="pane">1.10</td><td class="pane pack">NA</td>
+        </tr>
+        <tr name="SSH Slaves plugin" class=" plugin">
+          <td data="_" class="pane" align="center"><input
+            onclick="flip(this);" name="plugin.ssh-slaves.default"
+            type="checkbox" /></td>
+          <td data="SSH Slaves plugin" class="pane"><div>
+              <a
+                href="https://wiki.jenkins-ci.org/display/JENKINS/SSH+Slaves+plugin">SSH
+                Slaves plugin</a>
+            </div>
+            <div class="excerpt">This plugin allows you to manage
+              slaves running on \*nix machines over SSH.</div></td>
+          <td class="pane">1.9</td>
+          <td class="pane">1.8</td><td class="pane pack">NA</td>
+        </tr>
+        <tr name="Subversion Plugin" class=" plugin">
+          <td data="_" class="pane" align="center"><input
+            onclick="flip(this);" name="plugin.subversion.default"
+            type="checkbox" /></td>
+          <td data="Subversion Plugin" class="pane"><div>
+              <a
+                href="https://wiki.jenkins-ci.org/display/JENKINS/Subversion+Plugin">Subversion
+                Plugin</a>
+            </div>
+            <div class="excerpt">This plugin adds the Subversion
+              support (via SVNKit) to Jenkins.</div></td>
+          <td class="pane">2.5</td>
+          <td class="pane">1.45</td><td class="pane pack">NA</td>
+        </tr>
+        <tr name="Translation Assistance Plugin" class=" plugin">
+          <td data="_" class="pane" align="center"><input
+            onclick="flip(this);" name="plugin.translation.default"
+            type="checkbox" /></td>
+          <td data="Translation Assistance Plugin" class="pane"><div>
+              <a
+                href="https://wiki.jenkins-ci.org/display/JENKINS/Translation+Assistance+Plugin">Translation
+                Assistance Plugin</a>
+            </div>
+            <div class="excerpt">This plugin adds an additional
+              dialog box in every page, which enables people to
+              contribute localizations for the messages they are seeing
+              in the current page.</div></td>
+          <td class="pane">1.12</td>
+          <td class="pane">1.10</td><td class="pane pack">NA</td>
+        </tr>
+      </tbody>
+          
+   </table>
+  </div>
+  <div style="height: 77px;"></div>
+  <div style="position: fixed; bottom: 0px; left: 349px;"
+    id="bottom-sticker">
+    <div class="bottom-sticker-edge"></div>
+    <div class="bottom-sticker-inner">
+      <span name="Submit" id="yui-gen1"
+        class="yui-button yui-submit-button submit-button primary"><span
+        class="first-child"><button id="yui-gen1-button"
+            tabindex="0" type="button">Download now and install
+            after restart</button></span></span>
+    </div>
+  </div>
+  <div style="margin-top: 1em">
+    Select: <a href="javascript:toggleCheckboxes(true);">All</a>, <a
+      href="javascript:toggleCheckboxes(false);">None</a><br /> This
+    page lists updates to the plugins you currently use.
+  </div>
+  <div>
+    <input name="json" value="init" type="hidden" />
+  </div>
+</form>
+        
+        </div>
+
+        
+        <div class="page-box" style=" min-height:500px; margin-bottom:1000px; display:none">
+          <h2 style="display:inline-block; max-width:897px;">Welcome to CloudBees Jenkins Enterprise <span class="sub" style="display:block; margin-top:5px; padding-top:5px; border-top:1px solid #ccc; font-size:60%; text-align:right">Part of the CloudBees Continuous Delivery platform</span></h2>
+        
+          <div class="collapse in" id="createAccount" style="max-width:897px;">
+            <h3 style="margin:40px 0 -40px">Stand-alone or join an operation cluster</h3>
+            <div id="account-setup-je" class="btn-group licChoice">
+              <a class="btn btn-default" id="newAccountJEBtn"><strong>Join an operation cluster</strong> Connect this Master to a JOC parent to enable centralized managment</a>
+              <a class="btn btn-default" id="existingAccountJEBtn"><strong>Use as stand-along</strong> This Jenkins Master will act an independant unit for job monitoring</a>
+              <a class="btn btn-default" id="newLicenseJEBtn"><strong>Decide later</strong> You may begin evaluating CJE as a stand-alone master</a>
+            </div>
+            
+            <div  class="pull-right col-md-8">
+            <p style="font-size:120%; line-height:150%">The CloudBees Continuous Delivery platform is designed to sycronize build management accross an integrated ecosystem. 
+            To take full advantage of that functionality, this Jenkins Master should be merged into a larger operations center cluster, headed by a JOC installation. To do so, you will need to connect to that compute center. 
+            If you are not ready to take that integration step, you may begin your evaluation with this Jenkins unit as a stand-alone server.</p>
+            <button class="btn btn-default pull-right" data-toggle="collapse" data-target="#selectLevel, #createAccount" aria-expanded="false" aria-controls="selectLevel, createAccount">Skip this step</button>
+            </div>
+            <div style="display:none;">
+            <div id="newAccountJE">
+              <div class="row">
+              <div class="col col-md-6">
+                <div class="read-size">
+                <h3>Joining an operations center is easy</h3>
+                <p>Conections between Jenkins nodes is secured via shared keys between the JOC, master and slave units. You may either push the connection credentials from the JOC console, or paste that servers certificate into this input to establish the connection from this end.</p>
+                </div>
+              </div>              
+              <div class="col col-md-6">
+              <form>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Operations Center Commander URL</label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="URL to JOC server" />
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Connection certificate</label>
+                  <textarea  class="form-control" placeholder="Paste connection details here..." style="height:250px;"></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-default pull-right" style="margin-left:5px;">Details &#8594;</button>
+                <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                
+              </form>
+              </div>
+
+              </div>
+            </div>
+            
+            <div id="existingAccountJE">
+              <div class="row">
+              <div class="col col-md-1"></div>
+              <div class="col col-md-10">
+                <div class="read-size">
+                <h3>Going it alone has limitations</h3>
+                <p>Are you sure you are not interested in centralizing you management of build processes and the added performance and scalability of distributing workload accross several masters?</p>
+                <p>There is no additional cost for using JOC, but without it you will not be able to use an internal cloud model for optimizing your build process.</p>
+                </div>
+                 <div class="btn-group pull-right" data-toggle="buttons">
+  <label class="btn btn-default">
+    <input type="radio" name="options" id="option1z" autocomplete="off" /> Use Stand-alone...
+  </label>
+  <label class="btn btn-primary">
+    <input type="radio" name="options" id="option2z" autocomplete="off"/> Ask me again later...
+  </label>
+</div>
+<div class="clearfix" style="height:50px"></div>
+              </div>              
+              <div class="col col-md-1"></div>
+
+              </div>
+            </div>
+            
+            
+            <div id="newLicenseJE">
+              <div class="row">
+              <div class="col col-md-12">
+                <div class="read-size">
+                <h3>Not sure yet?</h3>
+                <p>You may start with stand-alone Jenkins and connect it to an operations center cluster in the future. If you have not yet downloaded JOC you can do so at this URL: <a href="#">www.cloudbees.com/download</a>.</p>
+                <button type="submit" class="btn btn-primary pull-right">Skip this for now...</button>
+                </div>
+              </div>              
+              
+
+              </div>
+            </div>
+            
+            
+            </div>
+            <div class="clearfix"></div>  
+          </div>
+          <div id="selectLevel" class="collapse" style="max-width:897px;">
+            <h3 style="margin:40px 0 -40px">Select feature level</h3>
+            <div id="licLevel" class="btn-group licChoice">
+              <a class="btn btn-default" id="teamEdBtn"><strong>Team Edition</strong> Ideal for small teams begining projects</a>
+              <a class="btn btn-default" id="enterprsiseEdBtn"><strong>Enterprise Edition</strong> The most comprehensive Jenkins offering designed to automate engineering at any scale</a>
+              <a class="btn btn-default" id="cloudEdBtn"><strong>Cloud Edition</strong> Run Jenkins in internal and external cloud environments</a>        
+            </div>
+            <div  class="pull-right col-md-8">
+            <p style="font-size:120%; line-height:150%">Choose the Jenkins edition that best fits the needs and size of your organization. 
+            Each package includes varrying levels of Enteprise Support to ensure your success with countinuous delivery.</p>
+             <button class="btn btn-default pull-right">Select Plugins</button> 
+             <button class="btn btn-default pull-right" data-toggle="collapse" data-target="#selectLevel, #createAccount" aria-expanded="false" aria-controls="selectLevel, createAccount" style="margin-right:5px;">Back</button>
+            </div>
+            <div style="display:none;">
+            <div id="teamEd">
+              <div class="row"> 
+               <div class="col col-md-6">
+                <div class="read-size">
+                <h3>Try Team Edition</h3>
+                <p>Everything you need to get started with Jenkins. Team Edition includes all the most popular premium plugins from CloudBees and a starter support package to ensure your success.</p></div>
+                <button class="btn btn-primary">Select this Edition</button>
+              </div>             
+              <div class="col col-md-6">
+              <ul>
+                <li>Starter
+                  <ul>
+                    <li>Support</li>
+                    <li>Folders</li>
+                    <li>Folders+</li>
+                    <li>WF OSS</li>
+                    <li>Backup</li>
+                  </ul>
+                </li>
+                <li>Security
+                  <ul>
+                    <li>RBAC</li>
+                    <li>Wikitext</li>
+                    <li>SecureCopy</li>
+                  </ul>
+                </li>
+                <li>CB J Analytics
+                  <ul>
+                    <li>Dashboards</li>
+                    <li>Alerting</li>
+                  </ul>
+                </li>
+              </ul>
+              </div>
+              </div>
+            </div>
+            
+            <div id="enterprsiseEd">
+              <div class="row">
+              <div class="col col-md-6">
+                <div class="read-size">
+                <h3>Go Enteprise!</h3>
+                <p>Jenkins Enterprise is completely awesomely good. Use it and see how great life can be with every checkin. Build things you never thought possible.</p>
+                <p>Login to your existing account and start making the magic happen. We love magic, which is why we all went to Hogwarts and played Dungeons and Dragons in the mid eighties.</p>
+                <button class="btn btn-primary">Select this Edition</button>
+                </div>
+              </div>   
+              <div class="col col-md-6">
+              <ul>
+                <li>High Availability
+                  <ul>
+                    <li>High Availability</li>
+                    <li>LR Builds</li>
+                    <li>Restart Aborted Builds</li>
+                  </ul>
+                </li>
+                <li>Optimized Utilization
+                  <ul>
+                    <li>Even Scheduler</li>
+                    <li>Fast Archiver</li>
+                    <li>NIO SSH</li>
+                    <li>Label Throttle</li>
+                    <li>vSphere</li>
+                  </ul>
+                </li>
+                <li>Management
+                  <ul>
+                    <li>Cluster Ops</li>
+                    <li>Custom Update Center</li>
+                    <li>Templates</li>
+                    <li>Plugin Usage</li>
+                    <li>Nodes Plus</li>
+                    <li>Consolidated Build View</li>
+                  </ul>
+                </li>
+                <li>Developer Productivity
+                  <ul>
+                    <li>Validated Merge</li>
+                    <li>GitHub PR</li>
+                  </ul>
+                </li>
+                <li>Continuous Delivery
+                  <ul>
+                    <li>WF Stage View</li>
+                    <li>Checkpoint</li>
+                  </ul>
+                </li>
+                <li>Ops
+                  <ul><li>Release Centric View </li></ul>
+                </li>
+              </ul>
+              </div>
+            </div>
+            </div>
+            
+            <div id="cloudEd">
+              <div class="row">
+              <div class="col col-md-6">
+                <div class="read-size">
+                <h3>Capture the Clouds</h3>
+                <p>Whether you are using remote resources or leveraging your own infrastructure, the convenience of cloud like virtualization is transforming computing.
+                CloudBees Jenkins Cloud Eidition is tailored made for these new environments.</p>
+                <button class="btn btn-primary">Select this Edition</button>
+                </div>
+              </div>              
+              <div class="col col-md-6">
+              <ul>
+                <li>Pivotal<ul>
+                <li>Deployer</li>
+<li>Pivotal Auth (name TBD)</li></ul></li>
+<li>Amazon Web Services<ul><li>
+EC2 Cli (deployer - name TBD)</li>
+<li>EC2 cloud slaves</li></ul></li>
+                
+              </ul>
+              </div>
+
+              </div>
+            </div>
+            
+            <div id="noConnection">
+              <div class="row">
+              <div class="col col-md-12">
+                <div class="read-size">
+                <h3>No tunnel out?</h3>
+                <p>We understand your build environment is important and you might need to keep it secured and well away from public access. 
+                If you are not able to connect to the greater internet from this computer you can skip this registration step and register from a computer that does have access to the web.
+                In the meantime, you will be without support access and some plugins may not function correctly.</p>
+                <button type="submit" class="btn btn-primary pull-right">Skip this for now...</button>
+                </div>
+              </div>              
+              
+
+              </div>
+            </div>
+            
+            
+            </div>
+          </div>
+       </div>
+        
+
+
+        
+        <div class="page-box" style=" min-height:500px; margin-bottom:1400px; border-top:1px solid #ccc; padding-top:200px; display:none">
+          <h2 style="display:inline-block; max-width:897px;">Welcome to CloudBees Operations Center <span class="sub" style="display:block; margin-top:5px; padding-top:5px; border-top:1px solid #ccc; font-size:60%; text-align:right">Part of the CloudBees Continuous Delivery platform</span></h2>
+        
+          <div class="collapse in" id="createAccount" style="max-width:897px;">
+            <h3 style="margin:40px 0 -40px">Create or join an account</h3>
+            <div id="account-setup" class="btn-group licChoice">
+              <a class="btn btn-default" id="newAccountBtn"><strong>Create new account</strong> Begin trial with new CloudBees account</a>
+              <a class="btn btn-default" id="existingAccountBtn"><strong>Use existing CloudBees account</strong> Use my existing CloudBees account for free trial</a>
+              <a class="btn btn-default" id="newLicenseBtn"><strong>Use license key</strong> Apply a valid Jenkins license key</a>
+              <a class="btn btn-default" id="noConnectionBtn"><strong>No connection</strong> This computer cannot connect to the internet</a>
+            </div>
+            
+            <div  class="pull-right col-md-8">
+            <p style="font-size:120%; line-height:150%">Before we start making better software, please take the time to help us do a little book keeping. 
+            To establish access to technical support and to validate your license we need you to establish an account with CloudBees. 
+            If you are impatient or are working from a computer without internet access, you may temporarily skip this step.</p>
+            <button class="btn btn-default pull-right" data-toggle="collapse" data-target="#selectLevel, #createAccount" aria-expanded="false" aria-controls="selectLevel, createAccount">Skip this step</button>
+            </div>
+            <div style="display:none;">
+            <div id="newAccount">
+              <div class="row">
+              <div class="col col-md-6">
+                <div class="read-size">
+                <h3>Getting started is fun</h3>
+                <p>Get stated with CloudBees by creating a new account that is fun and cool. You can do all sorts of great things. We know you can, because it is easy.</p>
+                <p>Try it now just for kicks and giggles.</p></div>
+              </div>              
+              <div class="col col-md-6">
+              <form>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Name</label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Your name" />
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" />
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Company</label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Your company name or organization" />
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" /> Receive product announcements
+                  </label>
+                </div>
+                 <div class="checkbox">
+                  <label>
+                    <input type="checkbox" /> Agree to <a href="#">terms of user license</a>
+                  </label>
+                </div>
+                <button type="submit" class="btn btn-primary pull-right">Submit</button>
+              </form>
+              </div>
+
+              </div>
+            </div>
+            
+            <div id="existingAccount">
+              <div class="row">
+              <div class="col col-md-6">
+                <div class="read-size">
+                <h3>Add this trial to an existing account</h3>
+                <p>Login to your existing account and start making the magic happen. We love magic, which is why we all went to Hogwarts and played Dungeons and Dragons in the mid eighties.</p>
+                <p><a href="#">Lost your password?</a> We can help.</p>
+                </div>
+              </div>              
+              <div class="col col-md-6">
+              <form>
+                <div class="form-group">
+                  <button class="btn btn-default" style="width:100%">Use Google</button>
+                </div>
+                <div class="form-group">
+                  <button class="btn btn-default" style="width:100%">Use GitHub</button>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Username</label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Your name" />
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Password</label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email" />
+                </div>
+                <button type="submit" class="btn btn-primary pull-right">Submit</button>
+              </form>
+              </div>
+
+              </div>
+            </div>
+            
+            <div id="newLicense">
+              <div class="row">
+              <div class="col col-md-6">
+                <div class="read-size">
+                <h3>Enter your license key</h3>
+                <p>You have already paid for our awesome product and we love you. Go ahead and prove your medal by entering your license key so we can move on to the good stuff.</p>
+                </div>
+              </div>              
+              <div class="col col-md-6">
+              <form>
+                <div class="form-group"> </div>
+                <div class="form-group"> </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Jenkins License Key</label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="16 digit key" />
+                </div>
+                <div class="form-group"> </div>
+                <div class="form-group"> </div>
+                <button type="submit" class="btn btn-primary pull-right">Submit</button>
+              </form>
+              </div>
+
+              </div>
+            </div>
+            
+            <div id="noConnection">
+              <div class="row">
+              <div class="col col-md-12">
+                <div class="read-size">
+                <h3>No tunnel out?</h3>
+                <p>We understand your build environment is important and you might need to keep it secured and well away from public access. 
+                If you are not able to connect to the greater internet from this computer you can skip this registration step and register from a computer that does have access to the web.
+                In the meantime, you will be without support access and some plugins may not function correctly.</p>
+                <button type="submit" class="btn btn-primary pull-right">Skip this for now...</button>
+                </div>
+              </div>              
+              
+
+              </div>
+            </div>
+            
+            
+            </div>
+            <div class="clearfix"></div>  
+          </div>
+          <div id="selectLevel" class="collapse" style="max-width:897px;">
+            <h3 style="margin:40px 0 -40px">Select feature level</h3>
+            <div id="licLevel" class="btn-group licChoice">
+              <a class="btn btn-default" id="teamEdBtn"><strong>Team Edition</strong> Ideal for small teams begining projects</a>
+              <a class="btn btn-default" id="enterprsiseEdBtn"><strong>Enterprise Edition</strong> The most comprehensive Jenkins offering designed to automate engineering at any scale</a>
+              <a class="btn btn-default" id="cloudEdBtn"><strong>Cloud Edition</strong> Run Jenkins in internal and external cloud environments</a>        
+            </div>
+            <div  class="pull-right col-md-8">
+            <p style="font-size:120%; line-height:150%">Choose the Jenkins edition that best fits the needs and size of your organization. 
+            Each package includes varrying levels of Enteprise Support to ensure your success with countinuous delivery.</p>
+             <button class="btn btn-default pull-right">Select Plugins</button> 
+             <button class="btn btn-default pull-right" data-toggle="collapse" data-target="#selectLevel, #createAccount" aria-expanded="false" aria-controls="selectLevel, createAccount" style="margin-right:5px;">Back</button>
+            </div>
+            <div style="display:none;">
+            <div id="teamEd">
+              <div class="row"> 
+               <div class="col col-md-6">
+                <div class="read-size">
+                <h3>Try Team Edition</h3>
+                <p>Everything you need to get started with Jenkins. Team Edition includes all the most popular premium plugins from CloudBees and a starter support package to ensure your success.</p></div>
+                <button class="btn btn-primary">Select this Edition</button>
+              </div>             
+              <div class="col col-md-6">
+              <ul>
+                <li>Starter
+                  <ul>
+                    <li>Support</li>
+                    <li>Folders</li>
+                    <li>Folders+</li>
+                    <li>WF OSS</li>
+                    <li>Backup</li>
+                  </ul>
+                </li>
+                <li>Security
+                  <ul>
+                    <li>RBAC</li>
+                    <li>Wikitext</li>
+                    <li>SecureCopy</li>
+                  </ul>
+                </li>
+                <li>CB J Analytics
+                  <ul>
+                    <li>Dashboards</li>
+                    <li>Alerting</li>
+                  </ul>
+                </li>
+              </ul>
+              </div>
+              </div>
+            </div>
+            
+            <div id="enterprsiseEd">
+              <div class="row">
+              <div class="col col-md-6">
+                <div class="read-size">
+                <h3>Go Enteprise!</h3>
+                <p>Jenkins Enterprise is completely awesomely good. Use it and see how great life can be with every checkin. Build things you never thought possible.</p>
+                <p>Login to your existing account and start making the magic happen. We love magic, which is why we all went to Hogwarts and played Dungeons and Dragons in the mid eighties.</p>
+                <button class="btn btn-primary">Select this Edition</button>
+                </div>
+              </div>   
+              <div class="col col-md-6">
+              <ul>
+                <li>High Availability
+                  <ul>
+                    <li>High Availability</li>
+                    <li>LR Builds</li>
+                    <li>Restart Aborted Builds</li>
+                  </ul>
+                </li>
+                <li>Optimized Utilization
+                  <ul>
+                    <li>Even Scheduler</li>
+                    <li>Fast Archiver</li>
+                    <li>NIO SSH</li>
+                    <li>Label Throttle</li>
+                    <li>vSphere</li>
+                  </ul>
+                </li>
+                <li>Management
+                  <ul>
+                    <li>Cluster Ops</li>
+                    <li>Custom Update Center</li>
+                    <li>Templates</li>
+                    <li>Plugin Usage</li>
+                    <li>Nodes Plus</li>
+                    <li>Consolidated Build View</li>
+                  </ul>
+                </li>
+                <li>Developer Productivity
+                  <ul>
+                    <li>Validated Merge</li>
+                    <li>GitHub PR</li>
+                  </ul>
+                </li>
+                <li>Continuous Delivery
+                  <ul>
+                    <li>WF Stage View</li>
+                    <li>Checkpoint</li>
+                  </ul>
+                </li>
+                <li>Ops
+                  <ul><li>Release Centric View </li></ul>
+                </li>
+              </ul>
+              </div>
+            </div>
+            </div>
+            
+            <div id="cloudEd">
+              <div class="row">
+              <div class="col col-md-6">
+                <div class="read-size">
+                <h3>Capture the Clouds</h3>
+                <p>Whether you are using remote resources or leveraging your own infrastructure, the convenience of cloud like virtualization is transforming computing.
+                CloudBees Jenkins Cloud Eidition is tailored made for these new environments.</p>
+                <button class="btn btn-primary">Select this Edition</button>
+                </div>
+              </div>              
+              <div class="col col-md-6">
+              <ul>
+                <li>Pivotal<ul>
+                <li>Deployer</li>
+<li>Pivotal Auth (name TBD)</li></ul></li>
+<li>Amazon Web Services<ul><li>
+EC2 Cli (deployer - name TBD)</li>
+<li>EC2 cloud slaves</li></ul></li>
+                
+              </ul>
+              </div>
+
+              </div>
+            </div>
+            
+            <div id="noConnection">
+              <div class="row">
+              <div class="col col-md-12">
+                <div class="read-size">
+                <h3>No tunnel out?</h3>
+                <p>We understand your build environment is important and you might need to keep it secured and well away from public access. 
+                If you are not able to connect to the greater internet from this computer you can skip this registration step and register from a computer that does have access to the web.
+                In the meantime, you will be without support access and some plugins may not function correctly.</p>
+                <button type="submit" class="btn btn-primary pull-right">Skip this for now...</button>
+                </div>
+              </div>              
+              
+
+              </div>
+            </div>
+            
+            
+            </div>
+          </div>
+       </div>
+        <div class="page-box" style="display:none">
+          <h2>Create Item ${staticURL}</h2>
+          <form class="create-item-list">
+            <fieldset class="panel panel-default">
+              <div class="panel-body">
+                <div class="input-group col-md-9 pull-left">                          
+                          <input placeholder="Filter item types..." type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" />
+                          <span class="input-group-addon icon-search"> </span>
+                          <span class="input-group-addon btn-default">Import item</span>
+                          <span class="input-group-addon btn-default">Add plugin</span>
+                        </div>
+              </div>
+            </fieldset>
+            <fieldset class="panel panel-default tile">
+              <div class="panel-body">
+                <span class="icn-box"><i class="icon-service"></i></span>
+                <strong class="title">Jobs and workflows</strong>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Freestyle 
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Maven 
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Workflow 
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Build Flow 
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Muli-configuration 
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+             <fieldset class="panel panel-default tile">
+              <div class="panel-body">
+                <span class="icn-box"><i class="icon-folder-open-o"></i></span>
+                <strong class="title">Organization and Visualization</strong>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Folder
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Folder template  
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Job monitor
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset class="panel panel-default tile">
+              <div class="panel-body">
+                <span class="icn-box"><i class="icon-insert-template"></i></span>
+                <strong class="title">Templates</strong>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Job
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Builder
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Folder    
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Publisher  
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Auxiliary
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset class="panel panel-default tile">
+              <div class="panel-body">
+                <span class="icn-box"><i class="icon-uniE602"></i></span>
+                <strong class="title">System and Operations</strong>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Update Center
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Master
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Slave Pool    
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Remote Shortcut  
+                  </label>
+                </div>
+               
+              </div>
+            </fieldset>
+            <fieldset class="panel panel-default tile">
+              <div class="panel-body">
+                <span class="icn-box"><i class="icon-docker"></i></span>
+                <strong class="title">Docker Containers</strong>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Jobs that build containers
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Container based test environments
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input name="org" type="radio" />
+                    Container tracking    
+                  </label>
+                </div>
+                
+               
+              </div>
+            </fieldset>
+             <fieldset class="panel panel-default tile">
+              <div class="panel-body">
+                <strong class="title">Plugins</strong>
+                <span class="icn-box"><i class="icon-puzzle-piece"></i></span>
+                <p> </p>
+                <p>
+                <button class="btn btn-sm btn-default">Add plugin</button>
+                </p>
+              </div>
+            </fieldset>
+
+          </form>
+        </div>
+
+        <div class="page-box" style="display:none">
+          <h2>Create Freestyle Build</h2>
+          <form>
+          <div class="panel-group" id="fsj-accordion" role="tablist"
+            aria-multiselectable="true">
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="fsj-headingOne">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#fsj-accordion"
+                    href="#fsj-basic" aria-expanded="true"
+                    aria-controls="fsj-basic"> Overview </a>
+                </h4>
+              </div>
+              <div id="fsj-basic" class="panel-collapse collapse in"
+                role="tabpanel" aria-labelledby="fsj-headingOne">
+                <fieldset class="panel-body">
+                <div class="form-group">
+                  <label>Project name</label>
+                   <input type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label>Description</label>
+                   <textarea class="form-control" ></textarea>
+                </div>
+                
+                </fieldset>
+              </div>
+            </div>
+            
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="fsj-headingAdvanced">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#fsj-accordion"
+                    href="#fsj-advanced" aria-expanded="true"
+                    aria-controls="fsj-advanced"> General Process Rules </a>
+                </h4>
+              </div>              
+              
+              <div id="fsj-advanced" class="panel-collapse collapse"
+                role="tabpanel" aria-labelledby="fsj-headingAdvanced">
+                <fieldset class="panel-body">
+                <div class="form-group">
+                <label>
+                   <input type="checkbox"/> Use display name
+                </label>
+                </div>
+               <div class="form-group">
+                <label>
+                   <input type="checkbox"/> Discard old builds
+                </label>
+                </div>
+                <div class="form-group">
+                <label>
+                   <input type="checkbox"/> Use custom workspace
+                </label>
+                </div>
+                <div class="form-group">
+                <label>
+                   <input type="checkbox"/>                
+                Set quiet period  </label>
+                </div>
+                <div class="form-group">
+                <label>
+                  <input type="checkbox"/>  
+Set retry count </label>
+                </div>
+                <div class="form-group">
+                <label>
+                  <input type="checkbox"/>  
+Block build when upstream project is building</label>
+                </div>
+<div class="form-group">
+                <label>
+                  <input type="checkbox"/>
+                Keep the build logs of dependencies</label>
+                </div>
+                </fieldset>
+              </div>
+            </div>
+            
+            
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="fsj-headingScm">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#fsj-accordion"
+                    href="#fsj-scm" aria-expanded="true"
+                    aria-controls="fsj-scm"> Source Code Management </a>
+                </h4>
+              </div>              
+              
+              <div id="fsj-scm" class="panel-collapse collapse"
+                role="tabpanel" aria-labelledby="fsj-headingScm">
+                <fieldset class="panel-body">
+                <div class="form-group">
+                <label>
+                   <input type="radio" name="scm" checked="checked "/> None
+                </label>
+                </div>
+                <div class="form-group">
+                <label>
+                   <input type="radio" name="scm" /> Multiple SVMs
+                </label>
+                </div>
+                <div class="form-group">
+                <label>
+                   <input type="radio" name="scm"/> CVS
+                </label>
+                </div>
+                <div class="form-group">
+                <label>
+                   <input type="radio" name="scm"/> CVS Projectset
+                </label>
+                </div>
+                <div class="form-group">
+                <label>
+                  <input type="radio" name="scm"/> Git </label>
+                </div>
+                <div class="form-group">
+                <label>
+                  <input type="radio" name="scm"/> Mecurial</label>
+                </div>
+                <div class="form-group">
+                <label>
+                  <input type="radio" name="scm"/> Perforce</label>
+                </div>
+                <div class="form-group">
+                <label>
+                   <input type="radio" name="scm"/> Subversion  </label>
+                </div>
+                </fieldset>
+              </div>
+            </div>
+            
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="fsj-headingTrigger">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#fsj-accordion"
+                    href="#fsj-trigger" aria-expanded="true"
+                    aria-controls="fsj-trigger"> Build Triggers </a>
+                </h4>
+              </div>              
+              
+              <div id="fsj-trigger" class="panel-collapse collapse"
+                role="tabpanel" aria-labelledby="fsj-headingTrigger">
+                <fieldset class="panel-body">
+                <div class="form-group">
+                <label>
+                  <input type="checkbox" name="trigger"/> Build when repository changes</label>
+                </div>                
+                <div class="form-group">
+                <label>
+                   <input type="checkbox" name="trigger" /> Build whenever a SNAPSHOT dependency is built 
+                </label>
+                </div>
+                <div class="form-group">
+                <label>
+                   <input type="checkbox" name="trigger" /> Trigger builds remotely (e.g., from scripts)
+                </label>
+                </div>
+                <div class="form-group">
+                <label>
+                   <input type="checkbox" name="trigger"/> Build after other projects are built 
+                </label>
+                </div>
+                <div class="form-group">
+                <label>
+                   <input type="checkbox" name="trigger"/> Build periodically 
+                </label>
+                </div>
+                <div class="form-group">
+                <label>
+                  <input type="checkbox" name="trigger"/> Build pull requests to the repository 
+                </label>
+                </div>
+                <div class="form-group">
+                <label>
+                  <input type="checkbox" name="trigger"/> Build when another project is promoted  </label>
+                </div>
+
+                </fieldset>
+              </div>
+            </div>
+
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="fsj-headingSteps">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#fsj-accordion"
+                    href="#fsj-steps" aria-expanded="true"
+                    aria-controls="fsj-steps"> Build Steps </a>
+                </h4>
+              </div>              
+              
+              <div id="fsj-steps" class="panel-collapse collapse"
+                role="tabpanel" aria-labelledby="fsj-headingSteps">
+                
+                <fieldset class="panel-body">
+                <div class="collapse divided-section" aria-expanded="false" id="collapseExample">
+ 
+                   <div class="panel-group" id="fsj-step-accordion" role="tablist"
+                              aria-multiselectable="true">
+                       <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="fsj-headingStep-1">
+                          <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="fsj-step-accordion"
+                              href="#fsj-step-1" aria-expanded="true"
+                              aria-controls="#fsj-step-1"> Step: Execute shell script </a>
+                          </h4>
+                        </div>              
+                        
+                        <div id="fsj-step-1" class="panel-collapse collapse"
+                          role="tabpanel" aria-labelledby="fsj-headingStep-1">
+                          <fieldset class="panel-body">
+                           <div class="form-group">
+          
+                            <pre class="editable">
+                            <textarea placeholder="Enter script here..."></textarea>
+                            </pre>
+                          </div> 
+                          <a href="#" class="btn btn-sm btn-primary" data-target="#add-steps, #add-step, #fsj-step-1" data-toggle="collapse">Continue</a>
+                          </fieldset>
+                        </div>
+                      </div>
+                   </div>
+                   <div class="divider"></div>               
+                
+                </div>
+                
+                <div id="add-step" class="collapse container-fluid" aria-expanded="false">
+                  <a href="#" class="btn btn-sm btn-default" data-target="#add-steps, #add-step, #fsj-step-1" data-toggle="collapse">Add step</a>
+                </div>
+                <div id="add-steps" class="collapse in container-fluid" aria-expanded="true">
+                  <div class="row">
+                    <div class="col-md-8">
+                    <div class="panel panel-default" style="margin-bottom:-2px;">
+                      <div class="panel-heading">
+                        <div class="input-group col-md-9 pull-left">                          
+                          <input placeholder="Filter steps operations..." type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" />
+                          <span class="input-group-addon icon-search"> </span>
+                          <span class="input-group-addon btn-default">Add plugin</span>
+                        </div>
+                        <div class="clearfix"></div>
+                      </div>
+                    </div>
+                    <div class="well well-sm" style="height:500px; overflow-y:auto;">
+                    
+                    <div class="build-steps" data-toggle="buttons">
+
+                      <button class="btn btn-default shell" data-toggle="collapse" data-target="#collapseExample, #fsj-step-1, #add-steps, #add-step" aria-expanded="false" aria-controls="collapseExample">
+                        <input type="radio" name="options" id="option2" autocomplete="off"  /> <span class="title">Execute shell script</span>
+                      </button>
+                      <label class="btn btn-default shell" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <input type="radio" name="options" id="option2" autocomplete="off"  /> <span class="title">Execute Windows batch command</span>
+                      </label>
+                      <label class="btn btn-default groovy" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <input type="radio" name="options" id="option2" autocomplete="off"  /> <span class="title">Exicute Groovy script</span>
+                      </label>
+                      <label class="btn btn-default deploy" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <input type="radio" name="options" id="option2" autocomplete="off"  /> <span class="title">Deploy application</span>
+                      </label>
+                      <label class="btn btn-default conditional" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <input type="radio" name="options" id="option1" autocomplete="off" /> <span class="title">Conditional step (single)</span>
+                      </label>
+                      <label class="btn btn-default conditionals" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <input type="radio" name="options" id="option1" autocomplete="off"  /> <span class="title">Conditional step (multiple)</span>
+                      </label>
+                      <label class="btn btn-default ant" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <input type="radio" name="options" id="option2" autocomplete="off" /> <span class="title">Invoke Ant</span>
+                      </label>
+                      <label class="btn btn-default gradle" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <input type="radio" name="options" id="option2" autocomplete="off"  /> <span class="title">Invoke Gradle</span>
+                      </label>
+                      <label class="btn btn-default maven" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <input type="radio" name="options" id="option2" autocomplete="off" /> <span class="title">Invoke Maven 3</span>
+                      </label>
+                      <label class="btn btn-default grails" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <input type="radio" name="options" id="option2" autocomplete="off" /> <span class="title">Build with Grails</span>
+                      </label>
+                      <label class="btn btn-default sbt" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <input type="radio" name="options" id="option2" autocomplete="off" /> <span class="title">Build with SBT</span>
+                      </label>
+                    </div>
+                    
+                    
+                    
+                    </div></div>
+                    <div class="col-md-4">
+                      <h3>&#8592; Add step</h3>
+                      <p>Add a new step to your build by choosing the operation type or plugin package you would like to use to perform that step. You will then be asked to configure the parameters for this step. Afterwards, you may add additional steps.</p>
+                    
+                    </div>
+                  </div>
+                </div>
+                
+
+
+                </fieldset>
+              </div>
+            </div>
+            
+            
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="fsj-headingPost">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#fsj-accordion"
+                    href="#fsj-post" aria-expanded="true"
+                    aria-controls="fsj-post"> Post-build actions </a>
+                </h4>
+              </div>              
+              
+              <div id="fsj-post" class="panel-collapse collapse"
+                role="tabpanel" aria-labelledby="fsj-headingPost">
+                <fieldset class="panel-body">
+                <div class="collapse divided-section" aria-expanded="false" id="actionCollapseExample">
+ 
+                   <div class="panel-group" id="fsj-action-accordion" role="tablist"
+                              aria-multiselectable="true">
+                       <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="fsj-headingAction-1">
+                          <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="fsj-action-accordion"
+                              href="#fsj-action-1" aria-expanded="true"
+                              aria-controls="fsj-action-1"> Step: Aggregate downsteam test results </a>
+                          </h4>
+                        </div>              
+                        
+                        <div id="fsj-action-1" class="panel-collapse collapse"
+                          role="tabpanel" aria-labelledby="fsj-headingAction-1">
+                          <fieldset class="panel-body">
+                           <div class="form-group">
+          
+                            <pre class="editable">
+                            <textarea placeholder="Enter script here..."></textarea>
+                            </pre>
+                          </div> 
+                          <a href="#" class="btn btn-sm btn-primary" data-target="#fsj-action-1, #add-actions, #add-action" data-toggle="collapse">Continue</a>
+                          </fieldset>
+                        </div>
+                      </div>
+                   </div>
+                   <div class="divider"></div>               
+                
+                </div>
+                
+                <div id="add-action" class="collapse container-fluid" aria-expanded="false">
+                  <a href="#" class="btn btn-sm btn-default" data-target="#fsj-action-1, #add-actions, #add-action" data-toggle="collapse">Add action</a>
+                </div>
+                <div id="add-actions" class="collapse in container-fluid" aria-expanded="true">
+                  <div class="row">
+                    <div class="col-md-8"><div class="well well-sm" style="height:500px; overflow-y:auto;">
+                    
+                    <div class="build-steps" data-toggle="buttons">
+
+                      <button class="btn btn-default results" data-toggle="collapse" data-target="#actionCollapseExample, #fsj-action-1, #add-actions, #add-action" aria-expanded="false" aria-controls="collapseExample">
+                        <input type="radio" name="options" id="option2" autocomplete="off"  /> <span class="title">Aggregate downsteam test results</span>
+                      </button>
+                      <label class="btn btn-default archive" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <input type="radio" name="options" id="option2" autocomplete="off"  /> <span class="title">Archive the artifacts</span>
+                      </label>
+                      <label class="btn btn-default build" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <input type="radio" name="options" id="option2" autocomplete="off"  /> <span class="title">Build other projects</span>
+                      </label>
+                      <label class="btn btn-default junit" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <input type="radio" name="options" id="option2" autocomplete="off"  /> <span class="title">Publish JUnit test results</span>
+                      </label>
+                      <label class="btn btn-default javadoc" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <input type="radio" name="options" id="option1" autocomplete="off" /> <span class="title">Publish Javadoc</span>
+                      </label>
+                      <label class="btn btn-default fingerprint" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <input type="radio" name="options" id="option1" autocomplete="off"  /> <span class="title">Record fingerprints</span>
+                      </label>
+                      <label class="btn btn-default email" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <input type="radio" name="options" id="option2" autocomplete="off" /> <span class="title">Email notifications</span>
+                      </label>
+                      
+                    </div>
+                    
+                    
+                    
+                    </div></div>
+                    <div class="col-md-4">
+                                    <h3>&#8592; Add action</h3>
+                <p>Add a new post-build action to your build by choosing the operation type or plugin package you would like to use to perform that step. You will then be asked to configure the parameters for this step. Afterwards, you may add additional steps.</p>
+                    
+                    </div>
+                  </div>
+                </div>
+                
+
+
+                </fieldset>
+              </div>
+            </div> 
+            
+            
+            
+            
+            
+            
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="fsj-headingNote">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#fsj-accordion"
+                    href="#fsj-note" aria-expanded="true"
+                    aria-controls="fsj-note"> Notifications </a>
+                </h4>
+              </div>              
+              
+              <div id="fsj-note" class="panel-collapse collapse"
+                role="tabpanel" aria-labelledby="fsj-headingNote">
+                <fieldset class="panel-body">
+                <div class="form-group">
+                <label>
+                   <input type="checkbox" name="trigger" /> None
+                </label>
+                </div>
+                <div class="form-group">
+                <label>
+                   <input type="checkbox" name="trigger" /> Multiple SVMs
+                </label>
+                </div>
+                <div class="form-group">
+                <label>
+                   <input type="checkbox" name="trigger"/> CVS
+                </label>
+                </div>
+                <div class="form-group">
+                <label>
+                   <input type="checkbox" name="trigger"/> CVS Projectset
+                </label>
+                </div>
+                <div class="form-group">
+                <label>
+                  <input type="checkbox" name="trigger"/> Git </label>
+                </div>
+                <div class="form-group">
+                <label>
+                  <input type="checkbox" name="trigger"/> Mecurial</label>
+                </div>
+                <div class="form-group">
+                <label>
+                  <input type="checkbox" name="trigger"/> Perforce</label>
+                </div>
+                <div class="form-group">
+                <label>
+                   <input type="checkbox" name="trigger"/> Subversion  </label>
+                </div>
+                </fieldset>
+              </div>
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            
+          </div>
+          
+          
+          
+          
+          
+          
+          
+          
+          </form>
+        </div>
+        <div class="page-box" style="display:none">
+          <h2>Create Build Item</h2>
+          <div class="panel-group" id="accordion" role="tablist"
+            aria-multiselectable="true">
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion"
+                    href="#collapseOne" aria-expanded="true"
+                    aria-controls="collapseOne"> Choose SCM
+                    Environement </a>
+                </h4>
+              </div>
+              <div id="collapseOne" class="panel-collapse collapse in"
+                role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                  <div class="max-read-width">
+                    <div class="btn-group scm" data-toggle="buttons">
+                      <label class="btn btn-default"> <input
+                        type="radio" name="options" id="option1"
+                        autocomplete="off" /><img
+                        src="${staticURL}/img/github_96.png" />
+                        <h4>GitHub</h4>
+                      </label> <label class="btn btn-default"> <input
+                        type="radio" name="options" id="option2"
+                        autocomplete="off" /><img
+                        src="${staticURL}/img/bitbucket_96.png" />
+                        <h4>Bitbucket</h4>
+                      </label> <label class="btn btn-default"> <input
+                        type="radio" name="options" id="option3"
+                        autocomplete="off" /><img
+                        src="${staticURL}/img/google_96.png" />
+                        <h4>Google Code</h4>
+                      </label>
+                    </div>
+                    <p>To connect a repository to a build job or
+                      workflow in Jenkins, you must first connect your
+                      CloudBees account to an SCM provider. We currently
+                      support GitHub, Bitbucket, and Google Code.</p>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingTwo">
+                <h4 class="panel-title">
+                  <a class="collapsed" data-toggle="collapse"
+                    data-parent="#accordion" href="#collapseTwo"
+                    aria-expanded="false" aria-controls="collapseTwo">
+                    Select Repository </a>
+                </h4>
+              </div>
+              <div id="collapseTwo" class="panel-collapse collapse"
+                role="tabpanel" aria-labelledby="headingTwo">
+                <div class="panel-body">
+                <div class="table-group">
+            <nav class="navbar navbar-default navbar-condensed nav-condensed attached">
+              <div class="container-fluid">
+                <form class="nav navbar-form navbar-left" role="search">
+                  <fieldset class="form-group">
+                    <div class="input-group input-group-sm">
+                      <input type="text" class="form-control"
+                        placeholder="Filter repositories..." /> <span
+                        class="input-group-btn">
+                        <button class="btn btn-default" type="button">Go!</button>
+                      </span>
+                    </div>
+                  </fieldset>
+                </form>
+              </div>
+            </nav>
+            <table class="table table-hover table-striped">
+             
+              <thead>
+                <tr>
+                  <th>Repository</th>
+                  <th>Updated</th>
+                </tr>
+              </thead>
+              <tbody >
+                <tr>
+                  <td><i class="icon-locked"> </i> cloudbees/work_prod_fixbattle</td>
+                  <td>2h 55 ago</td>
+                </tr>
+                 <tr>
+                  <td><i class="icon-repo-forked"> </i> cloudbees/work_prod_fixbattle</td>
+                  <td>2h 55 ago</td>
+                </tr>
+                <tr>
+                  <td><i class="icon-locked"> </i> cloudbees/work_prod_fixbattle</td>
+                  <td>2h 55 ago</td>
+                </tr>
+                 <tr>
+                  <td><i class="icon-locked"> </i> cloudbees/work_prod_fixbattle</td>
+                  <td>2h 55 ago</td>
+                </tr>
+                <tr>
+                  <td><i class="icon-locked"> </i> cloudbees/work_prod_fixbattle</td>
+                  <td>2h 55 ago</td>
+                </tr>
+                 <tr>
+                  <td><i class="icon-repo-forked"> </i> cloudbees/work_prod_fixbattle</td>
+                  <td>2h 55 ago</td>
+                </tr>
+                
+              </tbody>
+
+            </table>
+          </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingThree">
+                <h4 class="panel-title">
+                  <a class="collapsed" data-toggle="collapse"
+                    data-parent="#accordion" href="#collapseThree"
+                    aria-expanded="false" aria-controls="collapseThree">
+                    Configure Access </a>
+                </h4>
+              </div>
+              <div id="collapseThree" class="panel-collapse collapse"
+                role="tabpanel" aria-labelledby="headingThree">
+                <div class="panel-body">Anim pariatur cliche
+                  reprehenderit, enim eiusmod high life accusamus terry
+                  richardson ad squid. 3 wolf moon officia aute, non
+                  cupidatat skateboard dolor brunch. Food truck quinoa
+                  nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+                  sunt aliqua put a bird on it squid single-origin
+                  coffee nulla assumenda shoreditch et. Nihil anim
+                  keffiyeh helvetica, craft beer labore wes anderson
+                  cred nesciunt sapiente ea proident. Ad vegan excepteur
+                  butcher vice lomo. Leggings occaecat craft beer
+                  farm-to-table, raw denim aesthetic synth nesciunt you
+                  probably haven't heard of them accusamus labore
+                  sustainable VHS.</div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingFour">
+                <h4 class="panel-title">
+                  <a class="collapsed" data-toggle="collapse"
+                    data-parent="#accordion" href="#collapseFour"
+                    aria-expanded="false" aria-controls="collapseFour">
+                    Set Deployment Targets </a>
+                </h4>
+              </div>
+              <div id="collapseFour" class="panel-collapse collapse"
+                role="tabpanel" aria-labelledby="headingFour">
+                <div class="panel-body">
+                  <div class="max-read-width">
+                    <div class="btn-group scm" data-toggle="buttons">
+                      <label class="btn btn-default"> <input
+                        type="radio" name="options" id="1option1" autocomplete="off" /><img
+                        src="${staticURL}/img/saas_heroku.png" />
+                        <h4>Heroku</h4>
+                      </label> <label class="btn btn-default"> <input
+                        type="radio" name="options" id="1option2"
+                        autocomplete="off" /><img
+                        src="${staticURL}/img/saas_amazon.png" />
+                        <h4>EC2</h4>
+                      </label>
+                      <label class="btn btn-default"> 
+                        <input type="radio" name="options" id="1option3" autocomplete="off" />
+                        <span class="imgSz"><img src="${staticURL}/img/saas_dotcloud.png" /></span>
+                        <h4>DotCloud</h4>
+                      </label>
+                      <label class="btn btn-default"> 
+                        <input type="radio" name="options" id="1option3" autocomplete="off" />
+                        <span class="imgSz"><img src="${staticURL}/img/saas_gae.png" /></span>
+                        <h4>AppEngine</h4>
+                      </label>
+                      <label class="btn btn-default"> 
+                        <input type="radio" name="options" id="1option3" autocomplete="off" />
+                        <span class="imgSz"><img src="${staticURL}/img/saas_ssh.png" /></span>
+                        <h4>SSH</h4>
+                      </label>
+                    </div>
+                     <p>After selecting one of the above supported deployment targets, you will be asked to configure that environment to communicate with your Jenkins cloud service.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingFive">
+                <h4 class="panel-title">
+                  <a class="collapsed" data-toggle="collapse"
+                    data-parent="#accordion" href="#collapseFive"
+                    aria-expanded="false" aria-controls="collapseFive">
+                    Review Groovy Build/Deployment Script </a>
+                </h4>
+              </div>
+              <div id="collapseFive" class="panel-collapse collapse"
+                role="tabpanel" aria-labelledby="headingFive">
+                <div class="panel-body">
+                  <pre class="editable"><textarea></textarea></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="page-box">
+        <h2>View Built Items</h2>
+        <div class="table-group">
+            <nav class="navbar navbar-default navbar-condensed nav-condensed attached">
+              <div class="container-fluid">
+                <form class="nav navbar-form navbar-left" role="search">
+                  <fieldset class="form-group">
+                    <div class="input-group input-group-sm">
+                      <input type="text" class="form-control"
+                        placeholder="Filter jobs..." /> <span
+                        class="input-group-btn">
+                        <button class="btn btn-default" type="button">Go!</button>
+                      </span>
+                    </div>
+                  </fieldset>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                  <li class="dropdown" data-action="sort"><a href="#"
+                    class="dropdown btn-sm" data-toggle="dropdown"
+                    role="button" aria-expanded="false">Sort by <span
+                      class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a class="btn-sm" href="#">Item type</a></li>
+                      <li><a class="btn-sm" href="#">Environment</a></li>
+                      <li><a class="btn-sm" href="#">Updated</a></li>
+                      <li><a class="btn-sm" href="#">Health</a></li>
+                      <li><a class="btn-sm" href="#">Status</a></li>
+                    </ul></li>
+                  <li class="dropdown" data-action="group"><a href="#"
+                    class="dropdown btn-sm" data-toggle="dropdown"
+                    role="button" aria-expanded="false">Group by <span
+                      class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li data-effect="none"><a class="btn-sm" href="#">None</a></li>
+                      <li data-effect="type"><a class="btn-sm" href="#">Item type</a></li>
+                      <li data-effect="parentFolder"><a class="btn-sm" href="#">Environment</a></li>
+                      <li data-effect="updatedGroup"><a class="btn-sm" href="#">Updated</a></li>
+                      <li data-effect="healthGroup"><a class="btn-sm" href="#">Health</a></li>
+                      <li data-effect="result"><a class="btn-sm" href="#">Result</a></li>
+                      <li data-effect="causeGroup"><a class="btn-sm" href="#">Cause</a></li>
+                    </ul></li>
+                </ul>
+              </div>
+            </nav>
+            <table class="table table-hover table-striped" id="group-table">
+              <colgroup>
+                <col style="width: 32px" />
+                <col style="width: 32px" />
+                <col style="width: 32px" />
+                <col style="width: 40%" />
+                <col style="width: 15%" />
+                <col style="width: 15%" />
+                <col style="width: 15%" />
+                <col style="width: 15%" />
+              </colgroup>
+              <thead>
+                <tr>
+                  <th class="ctrl i"><a class="btn-ctrl" href="#"><i class="icon-gear-menu-o"></i></a></th>
+                  <th class="i"><i class="icon-cloudy"></i></th>
+                  <th class="i"><i class="icon-brick"></i></th>
+                  <th>Job or item name</th>                  
+                  <th>Triggerer</th>
+                  <th>Updated</th>                  
+                  <th>Duration</th>
+                  <th>Result</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="tr-failure">
+                  <td class="ctrl"><input type="checkbox" /></td>
+                  <td><i class="icon-lightning"></i></td>
+                  <td class="num"><a href="#">74</a></td>
+                  <td><a href="#"><i class="icon-folder-menu" style="margin-right:5px"></i> ami-creation-jobs</a></td>
+                  <td>NA</td>
+                  <td>2h 55 ago</td>                  
+                  <td>NA</td>
+                  <td>Failed</td>
+                </tr>
+                <tr class="tr-failure">
+                  <td class="ctrl"><input type="checkbox" /></td>
+                  <td><i class="icon-lightning"></i></td>
+                  <td class="num"><a href="#">576</a></td>
+                  <td><a href="#"><i class="icon-folder-menu" style="margin-right:5px"></i> Apps</a></td>
+                  <td>NA</td>
+                  <td>2h 55 ago</td>                  
+                  <td>NA</td>
+                  <td>Failed</td>
+                </tr>
+                <tr class="tr-failure">
+                  <td class="ctrl"><input type="checkbox" /></td>
+                  <td><i class="icon-lightning"></i></td>
+                  <td class="num"><a href="#">553</a></td>
+                  <td><a href="#"><i class="icon-folder-menu" style="margin-right:5px"></i> Attics</a></td>                  
+                  <td>NA</td>
+                  <td>2h 55 ago</td>                  
+                  <td>NA</td>
+                  <td>Failed</td>
+                </tr>
+                <tr class="tr-success">
+                  <td class="ctrl"><input type="checkbox" /></td>
+                  <td><i class="icon-rainy"></i></td>
+                  <td class="num"><a href="#">533</a></td>
+                  <td><a href="#"><i class="icon-folder-menu" style="margin-right:5px"></i> BeesSDK</a></td>                  
+                  <td>NA</td>
+                  <td>2h 55 ago</td>                  
+                  <td>NA</td>
+                  <td>Success</td>
+                </tr>                
+              </tbody>
+
+            </table>
+          </div>
+        </div>
+      </div>
+      <script src="${staticURL}/js/lib.js" />
+    </l:main-panel>
+  </l:layout>
+
+  <div id="hover-space" class="bootstrap3"></div>
+</j:jelly>
